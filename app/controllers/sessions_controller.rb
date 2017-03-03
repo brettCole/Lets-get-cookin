@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    auth = requestenv["omniauth.auth"]
+    auth = request.env["omniauth.auth"]
     if auth
       @user = User.sign_in_with_auth(auth)
       session[:id] = @user.id
