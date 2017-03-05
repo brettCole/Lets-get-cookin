@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'pages#main'
+# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'pages#index'
   get '/auth/:provider/callback' => 'sessions#create'
   delete '/sessions/:id' => 'sessions#destroy'
 
@@ -9,5 +10,4 @@ Rails.application.routes.draw do
   resources :ingredients
   resources :recipes
   resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

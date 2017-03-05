@@ -219,15 +219,16 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
   jquery-rails
+  less-rails
   less-rails-semantic_ui
   listen (~> 3.0.5)
   omniauth
   omniauth-facebook
   omniauth-twitter
   pry
-  puma (~> 3.0)
+  puma (~> 3.4)
   rails (~> 5.0.1)
-  sass-rails (~> 5.0)
+  sass-rails
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3

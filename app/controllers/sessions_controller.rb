@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       @user = User.sign_in_with_auth(auth)
       session[:id] = @user.id
     else
-      @user = User.find_by(email: params[:email])
+      @user = User.find_by_email(params[:email])
       if @user == @user.authenticate(params[:password]) && @user.provider.nil?
         session[:id] = @user.id
       end
