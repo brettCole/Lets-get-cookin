@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :recipes
-  validates :email, :password, presence: true
+  validates :name, :email, :password, presence: true
   validates :email, uniqueness: true
 
   #Create User with auth value from Twitter or Facebook
