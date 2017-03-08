@@ -46,6 +46,8 @@ gem 'omniauth-facebook'
 gem 'less-rails-semantic_ui'
 gem 'autoprefixer-rails'
 
+gem 'figaro'
+
 gem 'pry'
 
 

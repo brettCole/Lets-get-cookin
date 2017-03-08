@@ -12,6 +12,8 @@ class SessionsController < ApplicationController
       @user = User.find_by_email(params[:email])
       if @user == @user.authenticate(params[:password]) && @user.provider.nil?
         session[:id] = @user.id
+      else
+        render :new
       end
     end
     redirect_to user_path(@user)

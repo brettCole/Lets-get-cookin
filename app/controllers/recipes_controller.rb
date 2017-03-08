@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = current_user.recipes.create(recipe_params)
-    if @recipe.valid? && @recipe.save!
+    if @recipe.valid? && @recipe.save
       binding.pry
       redirect_to recipe_path(@recipe)
     else
