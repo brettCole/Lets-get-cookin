@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action :require_login, only: [:create]
 
   def index
   end
@@ -8,7 +9,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = current_user.recipes.create(recipe_params)
+    @recipe = current_user.recipes.new(recipe_params)
     if @recipe.valid? && @recipe.save
       binding.pry
       redirect_to recipe_path(@recipe)
@@ -24,7 +25,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :directions, :vegan, :description, :ingredients_attributes => [:name])
+    params.require(:recipe).permit(:title, :description, :directions, :prep_time, :cook_time, :gluten_free, :vegan, :ingredients_attributes => [:name])
   end
 
 end

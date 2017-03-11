@@ -12,4 +12,11 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def require_login
+    unless logged_in?
+      flash[:error] = "You need to Login first!"
+      redirect_to new_session_path
+    end
+  end
+
 end
