@@ -12,7 +12,6 @@ class User < ApplicationRecord
       user.name = auth['info']['name']
       user.email = auth['info']['email']
       user.password = SecureRandom.hex
-      user.save!
     end
   end
 
