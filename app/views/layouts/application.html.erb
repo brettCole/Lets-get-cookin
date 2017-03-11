@@ -12,8 +12,8 @@
     <h1>Lets Get Cookin</h1>
 
     <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-    <% end -%>
+      <%= content_tag :div, msg, class: "ui floating red message" %>
+    <% end %>
 
     <%= yield %>
 
