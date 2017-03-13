@@ -1,38 +1,42 @@
-    <div class="ui tiny image item">
-      <%= link_to image_tag("Twitter_Logo_White_On_Blue.svg"), '/auth/twitter' %>
-    </div>
-    <div class="ui tiny image item">
-      <%= link_to image_tag("FB-fLogo_2017.svg"), '/auth/facebook' %>
-    </div>
-    <h1 class="ui centered header">Please sign up</h1>
-    <%= form_for @user, :html => { :class => "ui form" } do |f| %>
-      <% if @user.errors.any? %>
-        <div class="ui red message">
-          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-          <ul>
-            <% @user.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
+<div class="ui tiny image item">
+  <%= link_to image_tag("Twitter_Logo_White_On_Blue.svg"), '/auth/twitter' %>
+</div>
+<div class="ui tiny image item">
+  <%= link_to image_tag("FB-fLogo_2017.svg"), '/auth/facebook' %>
+</div>
+<h1 class="ui centered header">Please sign up</h1>
+<%= form_for @user, :html => { :class => "ui form" } do |f| %>
+  <% if @user.errors.any? %>
+  <div class="ui red message">
+    <h2><%= pluralize(@user.errors.count, "error") %>
+      prohibited this user from being saved:</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
       <% end %>
-      <div class="ui raised text container segment">
-        <div class="required fluid field field_with_errors">
-            <%= f.label :name %>
-            <%= f.text_field :name, :placeholder => "Name" %><br><br>
-        </div>
-        <div class="required fluid field field_with_errors">
-            <%= f.label :email %>
-            <%= f.email_field :email, :placeholder => "example@gmail.com" %><br><br>
-        </div>
-        <div class="required fluid field field_with_errors">
-            <%= f.label :password %>
-            <%= f.password_field :password, :placeholder => "*****" %><br><br>
-        </div>
-        <div class="required fluid field field_with_errors">
-            <%= f.label :password_confirmation %>
-            <%= f.password_field :password_confirmation, :placeholder => "*****" %><br><br>
-        </div>
-          <%= f.submit 'Create User', :class => "ui teal huge submit button fluid" %>
-      </div>
-    <% end %>
+    </ul>
+  </div>
+<% end %>
+<div class="ui raised text container segment">
+  <div class="required fluid field field_with_errors">
+    <%= f.label :name %>
+    <%= f.text_field :name, :placeholder => "Name" %><br><br>
+  </div>
+  <div class="required fluid field field_with_errors">
+    <%= f.label :email %>
+    <%= f.email_field :email, :placeholder => "example@gmail.com" %><br><br>
+  </div>
+  <div class="required fluid field field_with_errors">
+    <%= f.label :password %>
+    <%= f.password_field :password, :placeholder => "*****" %><br><br>
+  </div>
+  <div class="required fluid field field_with_errors">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, :placeholder => "*****" %><br><br>
+  </div>
+    <%= f.submit 'Create User', :class => "ui teal huge submit button fluid" %>
+</div>
+<% end %>
+<div class="ui raised text container segment">
+  <h1 class="ui centered header">If already a user please <%= link_to "sign in!", new_session_path %></h1>
+</div>
