@@ -2,9 +2,9 @@
   <h1 class="ui centered header">Welcome back <%= "#{current_user.name}!" %></h1>
 </div>
 <div class="ui raised text container segment">
-  <ul>
+  <div class="ui middle aligned selection list">
     <% @recipes.each do |recipe| %>
-      <li><%= link_to "#{recipe.title}", recipe_path(recipe) %></li>
+      <div class="item"><%= link_to "#{recipe.title}", recipe_path(recipe) %></div>
     <% end %>
-  </ul>
+  </div>
 </div>
