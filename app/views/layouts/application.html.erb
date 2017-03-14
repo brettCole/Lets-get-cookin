@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <h1>Lets Get Cookin</h1>
+    <h1><%= link_to "Lets Get Cookin", root_path %></h1>
 
     <% flash.each do |name, msg| -%>
       <%= content_tag :div, msg, class: "ui floating red message" %>
