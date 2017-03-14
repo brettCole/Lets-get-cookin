@@ -5,7 +5,10 @@
   <h1 class="ui centered header"><%= link_to "Create New Recipe", new_recipe_path %></h1>
   <div class="ui middle aligned selection list">
     <% @recipes.each do |recipe| %>
-      <div class="item"><%= link_to "#{recipe.title}", recipe_path(recipe) %></div>
+      <div class="item">
+        <%= link_to "#{recipe.title}", recipe_path(recipe) %> |
+        <%= link_to "Edit", edit_recipe_path(recipe) %>
+      </div>
     <% end %>
   </div>
 </div>
