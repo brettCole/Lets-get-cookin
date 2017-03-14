@@ -1,10 +1,10 @@
 <div class="ui raised text container segment">
-  <h1 class="ui centered header">Welcome back <%= "#{current_user.name}!" %> </h1>
+  <h1 class="ui centered header">Welcome back <%= "#{current_user.name}!" %></h1>
 </div>
 <div class="ui raised text container segment">
+  <ul>
     <% @recipes.each do |recipe| %>
-      <ul>
-        <li><%= link_to "#{recipe.title}", recipe_path %></li>
-      </ul>
+      <li><%= link_to "#{recipe.title}", recipe_path(recipe) %></li>
     <% end %>
+  </ul>
 </div>

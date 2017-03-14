@@ -1,0 +1,25 @@
+<div class="ui raised text container segment">
+  <h1 class="ui centered header"><%= @recipe.title %></h1>
+  <h1 class="ui centered header">Description: <%= @recipe.description %></h1>
+  <h1 class="ui centered header">Prep Time: <%= @recipe.prep_time %></h1>
+  <h1 class="ui centered header">Cook Time: <%= @recipe.cook_time %></h1>
+  <h1 class="ui centered header">Directions: <%= @recipe.directions %></h1>
+
+  <div class="ui list">
+    <h1 class="ui centered header">Ingredients: </h1>
+    <% @recipe.ingredients.each do |ingredient| %>
+      <h1 class="ui centered header"><%= ingredient.name %></h1>
+    <% end %>
+  </div>
+
+  <% if @recipe.vegan == true %>
+    <h1 class="ui centered header">Vegan: <i class="ui centered checkmark icon"></i></h1>
+  <% else %>
+    <h1 class="ui centered header">Vegan: <i class="ui centered remove icon"></i></h1>
+  <% end %>
+  <% if @recipe.gluten_free == true %>
+    <h1 class="ui centered header">Gluten Free: <i class="ui centered checkmark icon"></i></h1>
+  <% else %>
+    <h1 class="ui centered header">Gluten Free: <i class="ui centered remove icon"></i></h1>
+  <% end %>
+</div>
