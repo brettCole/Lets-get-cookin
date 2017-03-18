@@ -1,3 +1,6 @@
-<%= form_tag session_path(current_user), method: :delete do %>
-  <%= submit_tag 'Logout' %>
-<% end %>
+<!-- <%# form_tag session_path(current_user), method: :delete do %>
+  <%# submit_tag 'Logout' %>
+<%# end %> -->
+<button class="ui large button">
+  <%= link_to 'Logout', session_path(current_user), method: :delete, :html => { :class => 'ui large header'} %>
+</button>

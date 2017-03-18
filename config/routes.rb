@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create'
   delete '/sessions/:id' => 'sessions#destroy'
 
+  resources :users do
+    resources :favorites 
+  end
   resources :sessions
   resources :favorites
   resources :ratings
   resources :ingredients
   resources :recipes
-  resources :users
 end

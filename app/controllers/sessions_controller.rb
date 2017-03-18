@@ -23,7 +23,8 @@ class SessionsController < ApplicationController
       session[:id] = @user.id
       redirect_to user_path(@user)
 
-    elsif params[:email] = '' || params[:password] = ''
+    elsif params[:email] == '' || params[:password] == ''
+      binding.pry
       flash.now[:error] = "Email and Password Cannot Be Blank!"
       render :new
 
