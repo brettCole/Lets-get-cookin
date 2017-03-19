@@ -5,13 +5,12 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    @recipe = params[:recipe_id]
     @favorite = Favorite.new(favorite_params)
     if @favorite.save
       redirect_to user_favorites_path(current_user)
     else
-      flash.now[:message] = "Already Favorited!"
-      render recipe_path(@recipe)
+      flash[:message] = "Already Favorited!"
+      redirect_to (:back)
     end
   end
 
