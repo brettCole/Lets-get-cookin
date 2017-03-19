@@ -1,3 +1,13 @@
 <div class="ui raised text container segment">
   <h1 class="ui centered header"><%= "#{current_user.name}!" %></h1>
 </div>
+
+<div class="ui raised text container segment">
+  <div class="ui middle aligned selection list">
+    <% @favorites.each do |favorite| %>
+      <div class="item">
+        <%= link_to "#{favorite.recipe.title}", recipe_path(favorite.recipe_id) %>
+      </div>
+    <% end %>
+  </div>
+</div>
