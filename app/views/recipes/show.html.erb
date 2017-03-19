@@ -1,9 +1,13 @@
 <div class="ui raised text container segment">
+  <div class="ui clearing">
   <%= form_for @favorite do |f| %>
     <%= f.hidden_field :recipe_id, :value => @recipe.id %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.submit 'Add Recipe to Favorites', { :class => 'ui button' } %>
+    <%= f.submit 'Add Recipe to Favorites', { :class => 'ui left floated button' } %>
   <% end %>
+    <%= link_to 'Write Review', new_recipe_rating_path(@recipe), { :class => 'ui right floated button' } %>
+  </div>
+
   <h1 class="ui centered header"><%= @recipe.title %></h1>
   <h1 class="ui centered header">Description: <%= @recipe.description %></h1>
   <h1 class="ui centered header">Prep Time: <%= @recipe.prep_time %></h1>

@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   delete '/sessions/:id' => 'sessions#destroy'
 
   resources :users do
-    resources :favorites 
+    resources :favorites
   end
-  resources :sessions
-  resources :favorites
-  resources :ratings
-  resources :ingredients
-  resources :recipes
+
+  resources :recipes do
+    resources :ratings
+  end
+  resources :sessions, :favorites, :ratings, :ingredients, :recipes
 end

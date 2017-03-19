@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
   before_action :require_login, only: [:create]
 
   def index
+    @recipes = Recipe.all
   end
 
   def new

@@ -3,6 +3,7 @@ class Recipe < ApplicationRecord
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
   has_many :favorites
+  has_many :ratings
   validates :title, :description, :directions, :ingredients, presence: true
 
   def ingredients_attributes=(ingredients_attributes)
