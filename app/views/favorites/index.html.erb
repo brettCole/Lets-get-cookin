@@ -6,7 +6,8 @@
   <div class="ui middle aligned selection list">
     <% @favorites.each do |favorite| %>
       <div class="item">
-        <%= link_to "#{favorite.recipe.title}", recipe_path(favorite.recipe_id) %>
+        <%= link_to "#{favorite.recipe.title}", recipe_path(favorite.recipe_id) %> |
+        <%= link_to "Remove", favorite_path(favorite), :method => "delete" %>
       </div>
     <% end %>
   </div>
