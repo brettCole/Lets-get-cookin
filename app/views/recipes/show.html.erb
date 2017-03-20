@@ -30,3 +30,13 @@
     <h1 class="ui centered header">Gluten Free: <i class="ui centered remove icon"></i></h1>
   <% end %>
 </div>
+
+<div class="ui raised text container segment">
+  <% @ratings.each do |rating| %>
+  <div class="ui very padded segment">
+    <h1 class="ui centered header"><%= rating.user.name %>'s Review</h1>
+    <h1 class="ui centered header">Rating: <%= rating.rating %></h1>
+    <h1 class="ui centered header">Review: <%= rating.review %></h1>
+  </div>
+  <% end %>
+</div>

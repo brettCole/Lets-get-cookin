@@ -8,8 +8,7 @@ class RatingsController < ApplicationController
   def create
     @rating = Rating.new(rating_params)
     @rating.valid? && @rating.save
-    binding.pry
-    redirect_to recipe_path()
+    redirect_to recipe_path((params[:rating][:recipe_id]))
   end
 
   private

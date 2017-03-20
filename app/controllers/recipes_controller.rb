@@ -21,6 +21,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @ratings = @recipe.ratings.all
     @favorite = Favorite.new
   end
 
