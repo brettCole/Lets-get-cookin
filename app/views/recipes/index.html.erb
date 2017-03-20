@@ -1,5 +1,6 @@
 <div class="ui raised text container segment">
   <div class="ui list">
+    <h1 class="ui centered header"><%= link_to "Create New Recipe", new_recipe_path %></h1>
     <% @recipes.each do |recipe| %>
       <h1 class="ui centered header"><%= link_to recipe.title, recipe_path(recipe) %> | <%= recipe.user.name %></h1>
     <% end %>

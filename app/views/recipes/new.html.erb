@@ -32,12 +32,12 @@
       <%= label_tag "Ingredients" %>
     </div>
       <%= f.fields_for :ingredients, @recipe.ingredients.build do |i| %>
-      <% 5.times do %>
-        <div class="inline fields">
-          <%= i.text_field :name %>
-        </div>
+        <% 12.times do %>
+          <div class="field">
+            <%= i.text_field :name %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
 
       <%= f.submit 'Create Recipe', :class => "ui teal huge submit button fluid" %>
   </div>
