@@ -19,6 +19,11 @@ class UsersController < ApplicationController
     @recipes = current_user.recipes.all
   end
 
+  def destroy
+    current_user.delete
+    redirect_to new_user_path
+  end
+
   private
 
   def user_params

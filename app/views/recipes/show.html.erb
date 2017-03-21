@@ -1,10 +1,16 @@
 <div class="ui raised text container segment">
-  <%= form_for @favorite do |f| %>
-    <%= f.hidden_field :recipe_id, :value => @recipe.id %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.submit 'Add Recipe to Favorites', { :class => 'ui left floated button' } %>
+  <% if current_user %>
+    <%= form_for @favorite do |f| %>
+      <%= f.hidden_field :recipe_id, :value => @recipe.id %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.submit 'Add Recipe to Favorites', { :class => 'ui left floated button' } %>
+    <% end %>
   <% end %>
+  <% if current_user %>
     <%= link_to 'Write Review', new_recipe_rating_path(@recipe), { :class => 'ui right floated button' } %>
+  <% else %>
+    <%= link_to 'Login to Create Review', new_session_path, { :class => 'ui right floated button' } %>
+  <% end %>
 
   <h1 class="ui centered header"><%= @recipe.title %></h1>
   <h1 class="ui centered header">Description: <%= @recipe.description %></h1>
