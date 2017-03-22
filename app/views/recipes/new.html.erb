@@ -31,13 +31,13 @@
     <div class="field required">
       <%= label_tag "Ingredients" %>
     </div>
+    <% 12.times do %>
       <%= f.fields_for :ingredients, @recipe.ingredients.build do |i| %>
-        <% 12.times do %>
-          <div class="field">
-            <%= i.text_field :name %>
-          </div>
-        <% end %>
+        <div class="field">
+          <%= i.text_field :name %>
+        </div>
       <% end %>
+    <% end %>
 
       <%= f.submit 'Create Recipe', :class => "ui teal huge submit button fluid" %>
   </div>

@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :recipes
-  has_many :favorites
-  has_many :ratings
+  has_many :recipes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :ratings, dependent: :destroy
   validates :name, :email, :password, presence: true
   validates :email, uniqueness: true
 

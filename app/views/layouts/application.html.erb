@@ -13,7 +13,7 @@
       <h2 class="link item"><%= link_to "Lets Get Cookin", root_path %></h1>
       <h2 class="link item"><%= link_to "Recipes", recipes_path %></h1>
       <div class="right menu">
-        <% if current_user %>
+        <% if logged_in? %>
           <h2 class="link item"><%= link_to "#{current_user.name}", user_path(current_user) %></h1>
         <% end %>
       </div>

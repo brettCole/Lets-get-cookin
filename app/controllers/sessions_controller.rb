@@ -4,28 +4,18 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # auth = request.env["omniauth.auth"]
-    # if auth
-    #   @user = User.sign_in_with_auth(auth)
-    #   session[:id] = @user.id
-    # else
-    #   @user = User.find_by_email(params[:email])
-    #   if @user == @user.authenticate(params[:password]) && @user.provider.nil?
-    #     session[:id] = @user.id
-    #   else
-    #     render :new
-    #   end
-    # end
-    # redirect_to user_path(@user)
     auth = request.env["omniauth.auth"]
     if auth
       @user = User.sign_in_with_auth(auth)
       session[:id] = @user.id
       redirect_to user_path(@user)
 
-    elsif params[:email] == '' || params[:password] == ''
-      binding.pry
-      flash.now[:error] = "Email and Password Cannot Be Blank!"
+    elsif params[:email] == "" || params[:password] == ""
+      flash.now[:error] = "Email and Password Can Not Be Blank!"
+      render :new
+
+    elsif !User.find_by_email(params[:email])
+      flash.now[:error] = "Email or Password Are Incorrect!"
       render :new
 
     else

@@ -1,4 +1,5 @@
 <div class="ui raised text container segment">
+
   <% if current_user %>
     <%= form_for @favorite do |f| %>
       <%= f.hidden_field :recipe_id, :value => @recipe.id %>
@@ -6,6 +7,7 @@
       <%= f.submit 'Add Recipe to Favorites', { :class => 'ui left floated button' } %>
     <% end %>
   <% end %>
+
   <% if current_user %>
     <%= link_to 'Write Review', new_recipe_rating_path(@recipe), { :class => 'ui right floated button' } %>
   <% else %>
