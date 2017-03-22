@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    current_user.destroy
+    current_user.destroy && reset_session
     redirect_to new_user_path
   end
 

@@ -17,4 +17,20 @@ class User < ApplicationRecord
     end
   end
 
+  #Create New Session
+  def self.create_session
+    if params[:email] == '' || params[:password] == ''
+      flash.now[:error] = "Email or Password Can Not Be Blank!"
+      render :new
+    elsif !self.find_by_email(params[:email])
+      flash.now[:error] ="Email or Password Are Incorrect!"
+      render :new
+    else
+      user = self.find_by_email(params[:email])
+      user == user.authenticate(params[:password]) && user.provider.nil?
+      session[:id] = user.id
+      redirect_to user_path(user)
+    end
+  end
+
 end
