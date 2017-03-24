@@ -10,21 +10,21 @@ class SessionsController < ApplicationController
       @user = User.sign_in_with_auth(auth)
       session[:id] = @user.id
       redirect_to user_path(@user)
-    else
-      User.create_session
-    # elsif params[:email] == "" || params[:password] == ""
-    #   flash.now[:error] = "Email and Password Can Not Be Blank!"
-    #   render :new
-    #
-    # elsif !User.find_by_email(params[:email])
-    #   flash.now[:error] = "Email or Password Are Incorrect!"
-    #   render :new
-    #
     # else
-    #   @user = User.find_by_email(params[:email])
-    #   @user == @user.authenticate(params[:password]) && @user.provider.nil?
-    #   session[:id] = @user.id
-    #   redirect_to user_path(@user)
+    #   User.create_session
+    elsif params[:email] == "" || params[:password] == ""
+      flash.now[:error] = "Email and Password Can Not Be Blank!"
+      render :new
+
+    elsif !User.find_by_email(params[:email])
+      flash.now[:error] = "Email or Password Are Incorrect!"
+      render :new
+
+    else
+      @user = User.find_by_email(params[:email])
+      @user == @user.authenticate(params[:password]) && @user.provider.nil?
+      session[:id] = @user.id
+      redirect_to user_path(@user)
     end
   end
 

@@ -1,0 +1,31 @@
+<div class="required fluid field field_with_errors">
+    <%= f.label :title %>
+    <%= f.text_field :title, :placeholder => "Spider Goulash" %><br><br>
+</div>
+<div class="required fluid field field_with_errors">
+    <%= f.label :description %>
+    <%= f.text_area :description %><br><br>
+</div>
+<div class="fluid field field_with_errors">
+    <%= f.label :prep_time %>
+    <%= f.text_field :prep_time %><br><br>
+</div>
+<div class="fluid field field_with_errors">
+    <%= f.label :cook_time %>
+    <%= f.text_field :cook_time, :placeholder => "20 mins" %><br><br>
+</div>
+<div class="required fluid field field_with_errors">
+    <%= f.label :directions %>
+    <%= f.text_area :directions %><br><br>
+</div>
+<div class="inline fields field_with_errors">
+    <%= f.label :vegan %>
+    <%= f.check_box :vegan %>
+
+    <%= f.label :gluten_free %>
+    <%= f.check_box :gluten_free %>
+</div>
+
+<div class="field required">
+  <%= label_tag "Ingredients" %>
+</div>

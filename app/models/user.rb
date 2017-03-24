@@ -3,7 +3,9 @@ class User < ApplicationRecord
   has_many :recipes, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :ratings, dependent: :destroy
-  validates :name, :email, :password, presence: true
+  
+  validates :password, confirmation: true
+  validates :name, :email, :password, :password_confirmation, presence: true
   validates :email, uniqueness: true
 
   #Create User with auth value from Twitter or Facebook
