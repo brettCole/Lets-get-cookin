@@ -20,6 +20,10 @@ class UsersController < ApplicationController
     @recipes = current_user.recipes.all
   end
 
+  def edit
+    @user = current_user
+  end
+
   def destroy
     current_user.destroy && reset_session
     redirect_to new_user_path

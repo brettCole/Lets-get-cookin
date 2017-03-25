@@ -1,10 +1,4 @@
-<button class="ui twitter icon massive button">
-  <%= link_to ("<i class='twitter icon'></i>").html_safe, '/auth/twitter' %>
-</button>
-
-<button class="ui facebook icon massive button">
-  <%= link_to ("<i class='facebook icon'></i>").html_safe, '/auth/facebook' %>
-</button>
+<%= render 'icon_sign_in' %>
 
 <h1 class="ui centered header">Please sign in</h1>
 <%= form_tag sessions_path, { :class => "ui form" } do %>
