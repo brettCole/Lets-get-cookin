@@ -4,13 +4,24 @@
     <%= render 'recipe_form', f: f %>
 
     <% 10.times do %>
+      <%= f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |q| %>
       <%= f.fields_for :ingredients, @recipe.ingredients.build do |i| %>
         <div class="field">
+          <%= q.text_field :quantity %>
           <%= i.text_field :name %>
         </div>
+      <% end %>
       <% end %>
     <% end %>
 
       <%= f.submit 'Create Recipe', :class => "ui teal huge submit button fluid" %>
   </div>
 <% end %>
+
+<!-- 10.times do
+  f.fields_for :ingredients, @recipe.ingredients.build do |i|
+  div class="field"
+  i.text_field :name
+  /div
+  end
+  end -->

@@ -3,7 +3,7 @@
   <h1 class="ui centered header">Recipes of the day!</h1>
   <div class="ui middle aligned selection list">
     <% Recipe.recipes_of_the_day.each do |recipe| %>
-      <div class="item"><%= link_to "#{recipe.title}", recipe_path(recipe) %></div>
+      <div class="ui centered header"><%= link_to "#{recipe.title}", recipe_path(recipe) %></div>
     <% end %>
   </div>
 </div>

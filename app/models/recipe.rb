@@ -6,6 +6,14 @@ class Recipe < ApplicationRecord
   has_many :ratings
   validates :title, :description, :directions, :ingredients, presence: true
 
+  # def ingredients_attributes=(ingredients_attributes)
+  #   ingredients_attributes.values.each do |attr|
+  #     unless attr[:name] == ""
+  #       ingredient = Ingredient.where(name: attr[:name].downcase).first_or_create
+  #       self.ingredients << ingredient
+  #     end
+  #   end
+  # end
   def ingredients_attributes=(ingredients_attributes)
     ingredients_attributes.values.each do |attr|
       unless attr[:name] == ""
