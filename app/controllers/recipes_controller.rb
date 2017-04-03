@@ -7,12 +7,16 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @ingredient = @recipe.ingredients.build
+    # @recipe.recipe_ingredients.build.build_ingredient
+    # 2.times { @recipe.recipe_ingredients.build.build_ingredient }
+    # 5.times { @recipe.recipe_ingredients.build.build_ingredient }
   end
 
   def create
     @recipe = current_user.recipes.new(recipe_params)
     binding.pry
-    if @recipe.valid? && @recipe.save
+    if @recipe.save
       redirect_to recipe_path(@recipe)
     else
       render :new
@@ -38,7 +42,8 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :description, :directions, :prep_time, :cook_time, :gluten_free, :vegan, :ingredients_attributes => [:name])
+    params.require(:recipe).permit(:title, :description, :directions, :prep_time, :cook_time, :gluten_free, :vegan,
+    :ingredients_attributes => [:quantity, :name])
   end
 
 end

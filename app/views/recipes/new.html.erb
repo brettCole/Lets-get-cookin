@@ -3,16 +3,17 @@
 
     <%= render 'recipe_form', f: f %>
 
-    <% 10.times do %>
-      <%= f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |q| %>
-      <%= f.fields_for :ingredients, @recipe.ingredients.build do |i| %>
-        <div class="field">
-          <%= q.text_field :quantity %>
+    <% 5.times do |n| %>
+      <%= f.fields_for :ingredients do |i| %>
+        <div class="fluid field field_with_errors">
+          <%= i.label :quantity %>
+          <input type="text" name="recipe[ingredients_attributes][<%= n %>][quantity]" /><br>
+          <%= i.label "Ingredient #{ n + 1 }" %>
           <%= i.text_field :name %>
-        </div>
-      <% end %>
+        </div><br>
       <% end %>
     <% end %>
+
 
       <%= f.submit 'Create Recipe', :class => "ui teal huge submit button fluid" %>
   </div>
