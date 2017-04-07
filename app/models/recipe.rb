@@ -10,7 +10,7 @@ class Recipe < ApplicationRecord
     ingredients_attributes.each do |i, attr|
       ingredient = Ingredient.find_or_create_by(name: attr[:name])
       self.recipe_ingredients.build(:ingredient => ingredient, :quantity => attr[:quantity])
-      binding.pry
+      
     end
   end
 

@@ -7,7 +7,6 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       #Omniauth params
       t.string :provider
       t.string :uid, limit: 8
-
     end
   end
 end
