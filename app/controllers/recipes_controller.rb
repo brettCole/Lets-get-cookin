@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :require_login, only: [ :new, :create, :show ]
+  before_action :require_login, only: [ :new, :create ]
 
   def index
     @recipes = Recipe.all
@@ -8,9 +8,6 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @ingredient = @recipe.ingredients.build
-    # @recipe.recipe_ingredients.build.build_ingredient
-    # 2.times { @recipe.recipe_ingredients.build.build_ingredient }
-    # 5.times { @recipe.recipe_ingredients.build.build_ingredient }
   end
 
   def create

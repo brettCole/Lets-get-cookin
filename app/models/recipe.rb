@@ -6,11 +6,14 @@ class Recipe < ApplicationRecord
   has_many :ratings
   validates :title, :description, :directions, presence: true
 
+  # Strip neccassary white space
+  auto_strip_attributes :title, :description, :directions, :prep_time, :cook_time, :squish => true 
+
   def ingredients_attributes=(ingredients_attributes)
     ingredients_attributes.each do |i, attr|
       ingredient = Ingredient.find_or_create_by(name: attr[:name])
       self.recipe_ingredients.build(:ingredient => ingredient, :quantity => attr[:quantity])
-      
+
     end
   end
 

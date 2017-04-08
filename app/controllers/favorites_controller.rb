@@ -6,7 +6,6 @@ class FavoritesController < ApplicationController
 
   def create
     @favorite = Favorite.new(favorite_params)
-    binding.pry
     if @favorite.valid? && @favorite.save
       redirect_to user_favorites_path(current_user)
     else
@@ -16,7 +15,6 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    binding.pry
     @favorite = Favorite.find(params[:id])
     @favorite.delete
     redirect_to user_path(current_user)

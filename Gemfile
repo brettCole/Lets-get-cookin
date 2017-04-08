@@ -50,6 +50,9 @@ gem 'figaro'
 
 gem 'pry'
 
+# Strip unwanted white space
+gem "auto_strip_attributes"
+
 
 
 group :development, :test do
