@@ -1,4 +1,10 @@
 <%= which_layout %>
+
+<div class="ui raised text container segment">
+  <h1 class="ui centered header">Highest Rated Recipe</h1>
+  <h1 class="ui centered header"><%= link_to Rating.most_popular, recipes_path %></h1>
+</div>
+
 <div class="ui raised text container segment">
   <h1 class="ui centered header">Recipes of the day!</h1>
   <div class="ui middle aligned selection list">

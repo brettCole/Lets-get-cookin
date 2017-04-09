@@ -1,7 +1,7 @@
 class RatingsController < ApplicationController
 
   def new
-
+    @recipe = Recipe.find_by(params[:id])
     @rating = Rating.new
   end
 
