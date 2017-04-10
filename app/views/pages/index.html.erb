@@ -2,7 +2,7 @@
 
 <div class="ui raised text container segment">
   <h1 class="ui centered header">Highest Rated Recipe</h1>
-  <h1 class="ui centered header"><%= link_to Rating.most_popular, recipes_path %></h1>
+  <h1 class="ui centered header"><%= link_to Rating.highest_rated.title, recipe_path(Rating.highest_rated) %></h1>
 </div>
 
 <div class="ui raised text container segment">
