@@ -1,12 +1,12 @@
 <%= form_for @recipe, :html => { :class => "ui form" } do |f| %>
   <div class="ui raised text container segment">
+    <%= render 'users/form_errors', object: @recipe %>
 
     <%= render 'recipe_form', f: f %>
 
     <% 10.times do |n| %>
       <%= f.fields_for :ingredients do |i| %>
-
-        <div class="fluid field field_with_errors">
+        <div class="fluid field">
           <%= i.label :quantity %>
           <input type="text" name="recipe[ingredients_attributes][<%= n %>][quantity]" /><br>
           <%= i.label "Ingredient #{ n + 1 }" %>

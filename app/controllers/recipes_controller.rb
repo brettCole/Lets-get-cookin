@@ -12,11 +12,10 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = current_user.recipes.new(recipe_params)
-    binding.pry
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
-      render :new
+      render new_recipe_path
     end
   end
 
@@ -31,16 +30,16 @@ class RecipesController < ApplicationController
   end
 
   def update
-    recipe = Recipe.find(params[:id])
-    recipe.update!(recipe_params)
-    redirect_to recipe_path(recipe)
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(recipe_params)
+    redirect_to recipe_path(@recipe)
   end
 
   private
 
   def recipe_params
     params.require(:recipe).permit(:title, :description, :directions, :prep_time, :cook_time, :gluten_free, :vegan,
-    :ingredients_attributes => [:quantity, :name])
+    :ingredients_attributes => [:id, :quantity, :name])
   end
 
 end

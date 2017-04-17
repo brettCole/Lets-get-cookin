@@ -6,7 +6,7 @@ class FavoritesController < ApplicationController
 
   def create
     @favorite = Favorite.new(favorite_params)
-    if @favorite.valid? && @favorite.save
+    if @favorite.save
       redirect_to user_favorites_path(current_user)
     else
       flash[:message] = "Already Favorited!"

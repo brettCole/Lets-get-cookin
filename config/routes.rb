@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :ratings
   end
+
   resources :sessions, :favorites, :ratings, :ingredients, :recipes
 end

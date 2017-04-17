@@ -3,8 +3,13 @@
 
     <%= render 'recipe_form', f: f %>
 
-      <%= f.fields_for :ingredients, @recipe.ingredients do |i| %>
-          <div class="inline fields">
+      <%= f.fields_for :ingredients do |i| %>
+          <div class="fluid field">
+            <%= i.label :quantity %>
+            <input type="text" name="recipe[ingredients_attributes][<%= i.index %>][quantity]" placeholder="<%= @recipe.recipe_ingredients(quantity: params[:quantity]) %>" /><br>
+            <%# binding.pry %>
+
+            <%= i.label "Ingredient #{ i.index + 1 }" %>
             <%= i.text_field :name %>
           </div>
       <% end %>

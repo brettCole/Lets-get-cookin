@@ -1,28 +1,18 @@
-<% if @user.errors.any? %>
-<div class="ui red message">
-  <h2><%= pluralize(@user.errors.count, "error") %>
-    prohibited this user from being saved:</h2>
-  <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
+<%= render 'form_errors', object: @user %>
 <div class="ui raised text container segment">
-<div class="required fluid field field_with_errors">
+<div class="required fluid field">
   <%= f.label :name %>
   <%= f.text_field :name, :placeholder => "Name" %><br><br>
 </div>
-<div class="required fluid field field_with_errors">
+<div class="required fluid field">
   <%= f.label :email %>
   <%= f.email_field :email, :placeholder => "example@gmail.com" %><br><br>
 </div>
-<div class="required fluid field field_with_errors">
+<div class="required fluid field">
   <%= f.label :password %>
   <%= f.password_field :password, :placeholder => "*****" %><br><br>
 </div>
-<div class="required fluid field field_with_errors">
+<div class="required fluid field">
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation, :placeholder => "*****" %><br><br>
 </div>

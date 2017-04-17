@@ -11,21 +11,17 @@ class SessionsController < ApplicationController
       session[:id] = @user.id
       redirect_to user_path(@user)
 
-    elsif params[:email] == "" || params[:password] == ""
-      flash.now[:error] = "Email and Password Can Not Be Blank!"
-      render :new
-
-    elsif !User.find_by_email(params[:email])
-      flash.now[:error] = "Email or Password Are Incorrect!"
-      render :new
-
     elsif @user = User.find_by_email(params[:email])
       if @user && @user.authenticate(params[:password]) && @user.provider.nil?
         session[:id] = @user.id
         redirect_to user_path(@user)
       end
+
+    elsif !User.find_by_email(params[:email]) || params[:email] == "" || params[:password] == ""
+      flash.now[:error] = "Email and Password Are Incorrect!"
+      render :new
     end
-  end
+  end  
 
   def destroy
     session.delete(:id)

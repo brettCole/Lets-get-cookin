@@ -15,6 +15,8 @@
       <div class="right menu">
         <% if logged_in? %>
           <h2 class="link item"><%= link_to "#{current_user.name}", user_path(current_user) %></h2>
+        <% elsif !current_page?(:controller => :sessions, :action => :new) %>
+          <h2 class="link item"><%= link_to "Login", new_session_path %></h2>
         <% end %>
       </div>
     </div>
