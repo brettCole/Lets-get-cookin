@@ -12,16 +12,19 @@ class SessionsController < ApplicationController
       redirect_to user_path(@user)
 
     elsif @user = User.find_by_email(params[:email])
-      if @user && @user.authenticate(params[:password]) && @user.provider.nil?
+      if @user && @user.authenticate(params[:password])
         session[:id] = @user.id
         redirect_to user_path(@user)
+      else
+        flash.now[:error] = "Email Or Password Do Not Match"
+        render :new
       end
 
     elsif !User.find_by_email(params[:email]) || params[:email] == "" || params[:password] == ""
       flash.now[:error] = "Email and Password Are Incorrect!"
       render :new
     end
-  end  
+  end
 
   def destroy
     session.delete(:id)
