@@ -9,16 +9,8 @@ class Recipe < ApplicationRecord
   # Strip neccassary white space
   auto_strip_attributes :title, :description, :directions, :prep_time, :cook_time, :squish => true
 
-  # def ingredients_attributes=(ingredients_attributes)
-  #   # find or create ingredient by attributes[0]["name"] set to variable
-  #   # if ingredient then recipe.recipe_ingredients.create(ingredient: ingredient, quantity: attributes[0]["quantity"])
-  #   ingredients_attributes.each do |i, attr|
-  #     ingredient = Ingredient.find_or_create_by(name: attr[:name])
-  #     self.recipe_ingredients.build(:ingredient => ingredient, :quantity => attr[:quantity])
-  #     binding.pry
-  #   end
-  # end
-
+  # find or create ingredient by attributes[0]["name"] set to variable
+  # if ingredient then recipe.recipe_ingredients.create(ingredient: ingredient, quantity: attributes[0]["quantity"])
   def ingredients_attributes=(ingredients_attributes)
     ingredients_attributes.each do |i, attr|
       unless attr[:name].blank?

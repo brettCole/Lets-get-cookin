@@ -5,11 +5,11 @@
   <%= render 'users/form_errors', object: @rating %>
 
   <div class="ui raised text container segment">
-    <div class="required fluid field field_with_errors">
+    <div class="required fluid field">
       <%= f.label :rating %>
       <%= f.number_field :rating, :placeholder => '0 - 5' %>
     </div>
-    <div class="required fluid field field_with_errors">
+    <div class="required fluid field">
       <%= f.label :review %>
       <%= f.text_area :review %>
     </div>

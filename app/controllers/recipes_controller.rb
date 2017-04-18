@@ -15,7 +15,8 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
-      render new_recipe_path
+      flash[:error] = @recipe.errors.full_messages.join(', ')
+      redirect_back(fallback_location: new_recipe_path)
     end
   end
 
