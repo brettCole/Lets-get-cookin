@@ -1,3 +1,13 @@
+<%= form_tag(recipes_path, :method => 'get', :class => "ui form") do %>
+<div class="ui rased text container segment">
+  <div class="fluid field">
+    <%= label_tag :search %>
+    <%= text_field_tag :search, params[:search], :placeholder => "Search in Recipes" %>
+  </div>
+    <%= submit_tag "Search Recipes", :class => "ui teal huge submit button fluid" %>
+  <% end %>
+</div>
+
 <div class="ui raised text container segment">
   <div class="ui list">
     <h1 class="ui centered header"><%= link_to "Create New Recipe", new_recipe_path %></h1>

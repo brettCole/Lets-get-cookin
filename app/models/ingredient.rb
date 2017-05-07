@@ -5,7 +5,6 @@ class Ingredient < ApplicationRecord
   # Strip neccassary white space
   auto_strip_attributes :name
 
-  #validates :name, presence: true
-  #add validation after creating javascript to dynamically create inputs
+  validates :name, presence: true
 
 end

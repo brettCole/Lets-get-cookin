@@ -2,7 +2,12 @@ class RecipesController < ApplicationController
   before_action :require_login, only: [ :new, :create ]
 
   def index
-    @recipes = Recipe.all
+    #@recipes = Recipe.all
+    if params[:search]
+      @recipes = Recipe.where("title LIKE ?", "%#{params[:search]}%")
+    else
+      @recipes = Recipe.all
+    end
   end
 
   def new

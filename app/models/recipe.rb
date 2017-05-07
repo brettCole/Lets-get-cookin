@@ -18,6 +18,7 @@ class Recipe < ApplicationRecord
 
         if self.recipe_ingredients.ids.empty?
           self.recipe_ingredients.build(:ingredient => ingredient, :quantity => attr[:quantity])
+
         else
           self.recipe_ingredients[i.to_i].update(:ingredient => ingredient, :quantity => attr[:quantity])
         end
