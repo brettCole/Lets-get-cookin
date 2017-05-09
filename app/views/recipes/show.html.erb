@@ -36,11 +36,12 @@
 </div>
 
 <div class="ui raised text container segment">
+  <h1 class="ui centered header"><%= link_to "Show Reviews", recipe_path, id: "show_review" %></h1>
   <% @ratings.each do |rating| %>
-  <div class="ui very padded segment">
-    <h1 class="ui centered header"><%= rating.user.name %>'s Review</h1>
-    <h1 class="ui centered header">Rating: <%= rating.rating %></h1>
-    <h1 class="ui centered header">Review: <%= rating.review %></h1>
+  <div class="ui very padded segment show_hide">
+    <h1 class="ui centered header show_hide"><%= rating.user.name %>'s Review</h1>
+    <h1 class="ui centered header show_hide">Rating: <%= rating.rating %></h1>
+    <h1 class="ui centered header show_hide">Review: <%= rating.review %></h1>
   </div>
   <% end %>
 </div>

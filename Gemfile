@@ -53,6 +53,9 @@ gem 'pry'
 # Strip unwanted white space
 gem "auto_strip_attributes"
 
+# Serialize JSON
+gem 'active_model_serializers'
+
 
 
 group :development, :test do
