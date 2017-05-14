@@ -1,11 +1,14 @@
 class RatingsController < ApplicationController
 
   def index
-    @recipe = Recipe.find_by(params[:id])
+    @recipe = Recipe.find(params[:recipe_id])
+    @ratings = @recipe.ratings.all
+    render json: @ratings
   end
 
   def new
-    @recipe = Recipe.find_by(params[:id])
+    @recipe = Recipe.find_by(params[:recipe_id])
+    binding.pry
     @rating = Rating.new
   end
 

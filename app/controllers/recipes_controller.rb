@@ -27,8 +27,10 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    # @ratings before jquery part of rails project
     @ratings = @recipe.ratings.all
     @favorite = Favorite.new
+    #render json: @ratings
   end
 
   def edit
