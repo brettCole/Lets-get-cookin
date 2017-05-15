@@ -10,15 +10,24 @@ $(function() {
       // debugger
       var $rating = $("#rating");
       var $review = $("#review");
-      $rating.append(response[0].rating);
-      $review.append(response[0].review);
+      var $test = $("#test");
+      var reviewCount = 0;
+
+      $test.prepend(response[reviewCount].user.name);
+      $rating.append(response[reviewCount].rating);
+      $review.append(response[reviewCount].review);
 
       $("#next_rating").on("click", function(e) {
         e.preventDefault();
-        $rating.text("");
-        $review.text("");
-        $rating.append(response[1].rating);
-        $review.append(response[1].review);
+        reviewCount++;
+        if (response[reviewCount].rating != "") {
+          $test.text("");
+          $rating.text("");
+          $review.text("");
+          $test.prepend(response[reviewCount].user.name);
+          $rating.append(response[reviewCount].rating);
+          $review.append(response[reviewCount].review);
+        };
       });
     });
     $(".show_hide").removeClass("show_hide");

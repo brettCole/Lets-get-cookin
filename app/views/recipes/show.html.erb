@@ -39,7 +39,7 @@
   <h1 class="ui centered header"><%= link_to "Show Reviews", recipe_ratings_path(@recipe.id), id: "show_review" %></h1>
   <%# @ratings.each do |rating| %>
   <div class="ui very padded segment show_hide">
-    <h1 class="ui centered header show_hide test"><%= @ratings.name %>'s Review</h1>
+    <h1 class="ui centered header"><span id="test"></span>'s Review</h1>
     <h1 class="ui centered header">Rating: <span id="rating"></span></h1>
     <h1 class="ui centered header">Review: </h1>
     <h1 id="review" class="ui centered header"></h1>
