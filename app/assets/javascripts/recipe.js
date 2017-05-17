@@ -10,10 +10,10 @@ $(function() {
       // debugger
       var $rating = $("#rating");
       var $review = $("#review");
-      var $test = $("#test");
+      var $user = $("#user");
       var reviewCount = 0;
 
-      $test.prepend(response[reviewCount].user.name);
+      $user.prepend(response[reviewCount].user.name);
       $rating.append(response[reviewCount].rating);
       $review.append(response[reviewCount].review);
 
@@ -21,14 +21,26 @@ $(function() {
         e.preventDefault();
         reviewCount++;
         if (response[reviewCount].rating != "") {
-          $test.text("");
+          $user.text("");
           $rating.text("");
           $review.text("");
-          $test.prepend(response[reviewCount].user.name);
+          $user.prepend(response[reviewCount].user.name);
           $rating.append(response[reviewCount].rating);
           $review.append(response[reviewCount].review);
         };
       });
+      $("#previous_rating").on("click", function(e) {
+        e.preventDefault();
+        reviewCount--;
+        if (response[reviewCount].rating != "") {
+          $user.text("");
+          $rating.text("");
+          $review.text("");
+          $user.prepend(response[reviewCount].user.name);
+          $rating.append(response[reviewCount].rating);
+          $review.append(response[reviewCount].review);
+        };
+      })
     });
     $(".show_hide").removeClass("show_hide");
   });
