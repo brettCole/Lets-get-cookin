@@ -3,7 +3,10 @@ class RatingsController < ApplicationController
   def index
     @recipe = Recipe.find(params[:recipe_id])
     @ratings = @recipe.ratings.all
-    render json: @ratings
+    respond_to do |format|
+      format.html
+      format.json { render :json => @ratings }
+    end
   end
 
   def new

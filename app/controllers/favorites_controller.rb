@@ -2,6 +2,10 @@ class FavoritesController < ApplicationController
 
   def index
     @favorites = current_user.favorites.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @favorites }
+    end
   end
 
   def create
@@ -9,8 +13,8 @@ class FavoritesController < ApplicationController
     if @favorite.save
       redirect_to user_favorites_path(current_user)
     else
-      flash[:message] = "Already Favorited!"
-      redirect_to (:back)
+      flash[:message] = 'Already Favorited!'
+      redirect_to :back
     end
   end
 

@@ -36,7 +36,7 @@
 </div>
 
 <div class="ui raised text container segment">
-  <h1 class="ui centered header"><%= link_to "Show Reviews", recipe_ratings_path(@recipe.id), id: "show_review" %></h1>
+  <h1 class="ui centered header"><%= link_to "Show Reviews", recipe_ratings_path(@recipe.id), id: "js-show_review" %></h1>
   <%# @ratings.each do |rating| %>
   <div class="ui very padded segment show_hide">
     <h1 class="ui centered header"><span id="user"></span>'s Review</h1>
