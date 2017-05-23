@@ -1,0 +1,15 @@
+.show_hide {
+  display: none;
+}
+
+.arrow {
+  float: right;
+}
+
+#previous_rating {
+  float: left;
+}
+
+#next_rating {
+  float: right;
+}

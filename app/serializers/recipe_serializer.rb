@@ -1,5 +1,5 @@
 class RecipeSerializer < ActiveModel::Serializer
-  attributes :title
+  attributes :id, :title
   has_many :ratings
   belongs_to :user
 end

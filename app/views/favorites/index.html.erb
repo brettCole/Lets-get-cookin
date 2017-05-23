@@ -5,10 +5,10 @@
 <div class="ui raised text container segment">
   <div class="ui middle aligned selection list">
     <% @favorites.each do |favorite| %>
-      <div class="item">
+      <div class="item js-title">
         <!-- <%= link_to "#{favorite.recipe.title}", recipe_path(favorite.recipe_id) %> -->
-        <%= link_to "", recipe_path(favorite.recipe_id), :id => "js-title" %>|
-        <%= link_to "Remove", favorite_path(favorite), :method => "delete" %>
+        <!-- <a id="js-title" href=""></a> | -->
+        | <%= link_to "Remove", favorite_path(favorite), :method => "delete" %>
       </div>
     <% end %>
   </div>
