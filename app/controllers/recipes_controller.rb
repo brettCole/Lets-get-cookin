@@ -29,6 +29,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @ratings = @recipe.ratings.all
     @favorite = Favorite.new
+    @rating = Rating.new
     respond_to do |format|
       format.html
       format.json { render json: @recipe }

@@ -1,0 +1,16 @@
+<%= form_for @rating, :html => { :class => "ui form" } do |f| %>
+
+  <%= render 'users/form_errors', object: @rating %>
+
+    <div class="required fluid field">
+      <%= f.label :rating %>
+      <%= f.number_field :rating, :placeholder => '0 - 5' %>
+    </div>
+    <div class="required fluid field">
+      <%= f.label :review %>
+      <%= f.text_area :review %>
+    </div>
+    <%= f.hidden_field :recipe_id, :value => params[:recipe_id] %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.submit 'Submit Review', :class => 'ui teal huge submit button fluid' %>
+<% end %>

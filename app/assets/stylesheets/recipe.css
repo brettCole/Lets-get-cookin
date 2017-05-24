@@ -13,3 +13,7 @@
 #next_rating {
   float: right;
 }
+
+#hidden_recipe_field {
+  display: none;
+}

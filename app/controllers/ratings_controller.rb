@@ -5,7 +5,7 @@ class RatingsController < ApplicationController
     @ratings = @recipe.ratings.all
     respond_to do |format|
       format.html
-      format.json { render :json => @ratings }
+      format.json { render json: @ratings }
     end
   end
 

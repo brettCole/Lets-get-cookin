@@ -4,7 +4,6 @@ $( function() {
     e.preventDefault();
 
     $.get({
-      // method: 'GET',
       url: this.href + ".json"
     }).success( function( response ) {
       let $rating = $( "#rating" );
@@ -48,11 +47,10 @@ $( function() {
   });
 
   // function for favorites index
-  $( window ).load( function() {
-    $.get({
+  $( window ).on( 'load', function() {
+    $.getJSON({
       url: window.location.href + ".json"
     }).success( function( response ) {
-      console.log( response );
       let $title = $( ".js-title" );
       let reviewCount = 0;
 
@@ -66,6 +64,13 @@ $( function() {
         reviewCount++;
       }
     });
+  })
+
+  // function to reveal rating form and post/json
+  $("div:contains('Write Review')").on('click', function(e) {
+    e.preventDefault();
+    $("#hidden_recipe_field").show();
+    $("html, body").scrollTop( $(document).height() );
   });
 
 });
