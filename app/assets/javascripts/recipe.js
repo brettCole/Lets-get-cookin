@@ -66,11 +66,26 @@ $( function() {
     });
   })
 
-  // function to reveal rating form and post/json
+  // function to reveal rating form
   $("div:contains('Write Review')").on('click', function(e) {
     e.preventDefault();
     $("#hidden_recipe_field").show();
     $("html, body").scrollTop( $(document).height() );
   });
+
+  // // function to post via ajax post
+  $("#new_rating").on('submit', function(e) {
+    e.preventDefault();
+    let rating_url = this.action;
+    let form_data = $(this).serialize();
+    console.log(form_data);
+
+    $.post({
+      url: rating_url,
+      data: form_data
+    }).success( function(response) {
+      console.log(response);
+    })
+  })
 
 });

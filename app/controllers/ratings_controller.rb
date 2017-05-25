@@ -18,10 +18,17 @@ class RatingsController < ApplicationController
     @recipe = Recipe.find_by(params[:id])
     @rating = Rating.new(rating_params)
     if @rating.save
-      redirect_to recipe_path((params[:rating][:recipe_id]))
+      # redirect_to recipe_path((params[:rating][:recipe_id]))
+      render 'ratings/show', :layout => false
     else
       render :new
     end
+  end
+
+  # show for ajax
+  def show
+    @recipe = Recipe.find_by(params[:recipe_id])
+    @rating = @recipe.rating
   end
 
   private
