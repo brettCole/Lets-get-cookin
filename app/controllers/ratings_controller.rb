@@ -19,7 +19,8 @@ class RatingsController < ApplicationController
     @rating = Rating.new(rating_params)
     if @rating.save
       # redirect_to recipe_path((params[:rating][:recipe_id]))
-      render 'ratings/show', :layout => false
+      # render 'ratings/show', :layout => false
+      render json: @rating, status: 201
     else
       render :new
     end

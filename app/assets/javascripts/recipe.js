@@ -84,8 +84,19 @@ $( function() {
       url: rating_url,
       data: form_data
     }).success( function(response) {
-      console.log(response);
-    })
-  })
+      let recipe_user = response.user.name;
+      let recipe_rating = response.rating;
+      let recipe_review = response.review;
+      let $rating = $( "#rating" );
+      let $review = $( "#review" );
+      let $user = $( "#user" );
+
+      $user.prepend( recipe_user );
+      $rating.prepend( recipe_rating );
+      $review.prepend( recipe_review );
+
+      $( ".show_hide" ).removeClass( "show_hide" );
+    });
+  });
 
 });
