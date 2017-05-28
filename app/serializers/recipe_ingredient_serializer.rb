@@ -1,3 +1,5 @@
 class RecipeIngredientSerializer < ActiveModel::Serializer
-  attributes :id, :quantity
+  attributes :quantity
+
+  belongs_to :ingredients
 end
