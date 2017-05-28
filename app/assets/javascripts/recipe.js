@@ -1,16 +1,29 @@
 $( function() {
+
+  // variables for recipe reviews on recipe show page
+  let $rating = $( "#rating" );
+  let $review = $( "#review" );
+  let $user = $( "#user" );
+  let reviewCount = 0;
+
+  //  variables for user favorite recipe index
+  let $title = $( ".js-title" );
+
+  var showGetReviewUrl = $( "#js-show_review" ).attr( 'href' ) + ".json";
+
   // function for recipe show page
-  $( "#js-show_review" ).on( "click", function( e ) {
+  function testingFunction() {
+    $( "#js-show_review" ).on( "click", function( e ) {
     e.preventDefault();
 
     $.get({
       url: this.href + ".json"
     }).success( function( response ) {
-      let $rating = $( "#rating" );
-      let $review = $( "#review" );
-      let $user = $( "#user" );
-      let reviewCount = 0;
-
+      debugger
+      // let $rating = $( "#rating" );
+      // let $review = $( "#review" );
+      // let $user = $( "#user" );
+      // let reviewCount = 0;
       $user.text( "" );
       $rating.text( "" );
       $review.text( "" );
@@ -18,18 +31,20 @@ $( function() {
       $rating.append( response[reviewCount].rating );
       $review.append( response[reviewCount].review );
 
-      $( "#next_rating" ).on( "click", function( e ) {
-        e.preventDefault();
-        reviewCount++;
-        if ( response[reviewCount].rating !== "" ) {
-          $user.text( "" );
-          $rating.text( "" );
-          $review.text( "" );
-          $user.prepend( response[reviewCount].user.name );
-          $rating.append( response[reviewCount].rating );
-          $review.append( response[reviewCount].review );
-        }
-      });
+      nextReview();
+      // $( "#next_rating" ).on( "click", function( e ) {
+      //   e.preventDefault();
+      //   reviewCount++;
+      //   if ( response[reviewCount].rating !== "" ) {
+      //     $user.text( "" );
+      //     $rating.text( "" );
+      //     $review.text( "" );
+      //     $user.prepend( response[reviewCount].user.name );
+      //     $rating.append( response[reviewCount].rating );
+      //     $review.append( response[reviewCount].review );
+      //   }
+      // });
+
       $( "#previous_rating" ).on( "click", function( e ) {
         e.preventDefault();
         reviewCount--;
@@ -45,14 +60,80 @@ $( function() {
     });
     $( ".show_hide" ).removeClass( "show_hide" );
   });
+}
+testingFunction();
+
+function nextReview() {
+  $.get({
+    url: showGetReviewUrl
+  }).success( function( response ) {
+$( "#next_rating" ).on( "click", function( e ) {
+  e.preventDefault();
+  reviewCount++;
+  if ( response[reviewCount].rating !== "" ) {
+    // $user.text( "" );
+    $user.empty().prepend( response[reviewCount].user.name);
+    $rating.empty().append( response[reviewCount].rating );
+    $review.empty().append( response[reviewCount].review);
+  }
+});
+});
+}
+
+
+//   let reviewGetRequest = function() {
+//     $( "#js-show_review" ).on( "click", function( e ) {
+//     e.preventDefault();
+//
+//     $.get({
+//       url: this.href + ".json"
+//     }).success( function( response ) {
+//       reviewResponse = response;
+//       debugger;
+//       // let $rating = $( "#rating" );
+//       // let $review = $( "#review" );
+//       // let $user = $( "#user" );
+//       // let reviewCount = 0;
+//       $user.text( "" );
+//       $rating.text( "" );
+//       $review.text( "" );
+//       $user.prepend( response[reviewCount].user.name );
+//       $rating.append( response[reviewCount].rating );
+//       $review.append( response[reviewCount].review );
+//     });
+//       $( ".show_hide" ).removeClass( "show_hide" );
+//   });
+// }
+//     reviewGetRequest();
+//
+//     let reviewResponse;
+//
+//
+//       $( "#next_rating" ).on( "click", function( reviewResponse ) {
+//         reviewResponse.preventDefault();
+//         debugger;
+//
+//
+//         reviewCount++;
+//         if ( response[reviewCount].rating !== "" ) {
+//           $user.text( "" );
+//           $rating.text( "" );
+//           $review.text( "" );
+//           $user.prepend( response[reviewCount].user.name );
+//           $rating.append( response[reviewCount].rating );
+//           $review.append( response[reviewCount].review );
+//         }
+//       });
+
+
 
   // function for favorites index
   $( window ).on( 'load', function() {
     $.getJSON({
       url: window.location.href + ".json"
     }).success( function( response ) {
-      let $title = $( ".js-title" );
-      let reviewCount = 0;
+      // let $title = $( ".js-title" );
+      // let reviewCount = 0;
 
       while( reviewCount < $title.length ) {
         let recipe_title = response[reviewCount].recipe.title;
@@ -64,7 +145,7 @@ $( function() {
         reviewCount++;
       }
     });
-  })
+  });
 
   // function to reveal rating form
   $("div:contains('Write Review')").on('click', function(e) {
@@ -91,12 +172,16 @@ $( function() {
       let $review = $( "#review" );
       let $user = $( "#user" );
 
+      $user.text( "" );
+      $rating.text( "" );
+      $review.text( "" );
       $user.prepend( recipe_user );
       $rating.prepend( recipe_rating );
       $review.prepend( recipe_review );
 
       $( ".show_hide" ).removeClass( "show_hide" );
+
+      nextReview();
     });
   });
-
 });
