@@ -32,31 +32,6 @@ $( function() {
       $review.append( response[reviewCount].review );
 
       nextReview();
-      // $( "#next_rating" ).on( "click", function( e ) {
-      //   e.preventDefault();
-      //   reviewCount++;
-      //   if ( response[reviewCount].rating !== "" ) {
-      //     $user.text( "" );
-      //     $rating.text( "" );
-      //     $review.text( "" );
-      //     $user.prepend( response[reviewCount].user.name );
-      //     $rating.append( response[reviewCount].rating );
-      //     $review.append( response[reviewCount].review );
-      //   }
-      // });
-
-      $( "#previous_rating" ).on( "click", function( e ) {
-        e.preventDefault();
-        reviewCount--;
-        if ( response[reviewCount].rating !== "" ) {
-          $user.text( "" );
-          $rating.text( "" );
-          $review.text( "" );
-          $user.prepend( response[reviewCount].user.name );
-          $rating.append( response[reviewCount].rating );
-          $review.append( response[reviewCount].review );
-        }
-      });
     });
     $( ".show_hide" ).removeClass( "show_hide" );
   });
@@ -77,55 +52,21 @@ $( "#next_rating" ).on( "click", function( e ) {
     $review.empty().append( response[reviewCount].review);
   }
 });
+
+$( "#previous_rating" ).on( "click", function( e ) {
+  e.preventDefault();
+  reviewCount--;
+  if ( response[reviewCount].rating !== "" ) {
+    $user.text( "" );
+    $rating.text( "" );
+    $review.text( "" );
+    $user.prepend( response[reviewCount].user.name );
+    $rating.append( response[reviewCount].rating );
+    $review.append( response[reviewCount].review );
+  }
+});
 });
 }
-
-
-//   let reviewGetRequest = function() {
-//     $( "#js-show_review" ).on( "click", function( e ) {
-//     e.preventDefault();
-//
-//     $.get({
-//       url: this.href + ".json"
-//     }).success( function( response ) {
-//       reviewResponse = response;
-//       debugger;
-//       // let $rating = $( "#rating" );
-//       // let $review = $( "#review" );
-//       // let $user = $( "#user" );
-//       // let reviewCount = 0;
-//       $user.text( "" );
-//       $rating.text( "" );
-//       $review.text( "" );
-//       $user.prepend( response[reviewCount].user.name );
-//       $rating.append( response[reviewCount].rating );
-//       $review.append( response[reviewCount].review );
-//     });
-//       $( ".show_hide" ).removeClass( "show_hide" );
-//   });
-// }
-//     reviewGetRequest();
-//
-//     let reviewResponse;
-//
-//
-//       $( "#next_rating" ).on( "click", function( reviewResponse ) {
-//         reviewResponse.preventDefault();
-//         debugger;
-//
-//
-//         reviewCount++;
-//         if ( response[reviewCount].rating !== "" ) {
-//           $user.text( "" );
-//           $rating.text( "" );
-//           $review.text( "" );
-//           $user.prepend( response[reviewCount].user.name );
-//           $rating.append( response[reviewCount].rating );
-//           $review.append( response[reviewCount].review );
-//         }
-//       });
-
-
 
   // function for favorites index
   $( window ).on( 'load', function() {
