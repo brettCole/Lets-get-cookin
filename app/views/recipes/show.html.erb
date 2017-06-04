@@ -10,20 +10,21 @@
 
   <%= if_logged_in_options %>
 
-  <h1 class="ui centered header"><%= @recipe.title %></h1>
-  <h1 class="ui centered header">Description: <%= @recipe.description %></h1>
-  <h1 class="ui centered header">Prep Time: <%= @recipe.prep_time %></h1>
-  <h1 class="ui centered header">Cook Time: <%= @recipe.cook_time %></h1>
-  <h1 class="ui centered header">Directions: <%= @recipe.directions %></h1>
+  <h1 id="recipe_title" class="ui centered header"><%#= @recipe.title %></h1>
+  <h1 id="recipe_description" class="ui centered header">Description: <%#= @recipe.description %></h1>
+  <h1 id="recipe_prep_time" class="ui centered header">Prep Time: <%#= @recipe.prep_time %></h1>
+  <h1 id="recipe_cook_time" class="ui centered header">Cook Time: <%#= @recipe.cook_time %></h1>
+  <h1 id="recipe_directions" class="ui centered header">Directions: <%#= @recipe.directions %></h1>
 
-  <div class="ui list">
+  <div id="recipe_ingredients" class="ui list">
+    <h1 id="total_amount" class="ui centered header">Total Number of Ingredients: </h1>
     <h1 class="ui centered header">Ingredients: </h1>
-    <% @recipe.recipe_ingredients.each do |recipe| %>
-      <h1 class="ui centered header"><%= recipe.quantity %> <%= recipe.ingredient.name %></h1>
-    <% end %>
+    <%# @recipe.recipe_ingredients.each do |recipe| %>
+      <!-- <h1 class="ui centered header"><%#= recipe.quantity %> <%#= recipe.ingredient.name %></h1> -->
+    <%# end %>
   </div>
 
-  <% if @recipe.vegan == true %>
+  <!-- <% if @recipe.vegan == true %>
     <h1 class="ui centered header">Vegan: <i class="ui centered checkmark icon"></i></h1>
   <% else %>
     <h1 class="ui centered header">Vegan: <i class="ui centered remove icon"></i></h1>
@@ -32,7 +33,9 @@
     <h1 class="ui centered header">Gluten Free: <i class="ui centered checkmark icon"></i></h1>
   <% else %>
     <h1 class="ui centered header">Gluten Free: <i class="ui centered remove icon"></i></h1>
-  <% end %>
+  <% end %> -->
+  <h1 class="ui centered header">Vegan: <i id="checkmark" class="ui centered"></i></h1>
+  <h1 class="ui centered header">Gluten Free: <i id="remove" class-="ui centered checkmark icon"></i></h1>
 </div>
 
 <div class="ui raised text container segment">

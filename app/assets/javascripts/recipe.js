@@ -1,4 +1,5 @@
 $(function() {
+  "use strict";
 
   // variables for recipe reviews on recipe show page
   let $rating = $("#rating");
@@ -118,4 +119,66 @@ $(function() {
       nextReview();
     });
   });
+
+  function recipeIngredientsResponse() {
+    $(window).on('load', function() {
+      $.getJSON({
+        url: window.location.href + ".json"
+      }).success(function(response) {
+
+        let recipe = new Recipe(response);
+
+        $("#recipe_title").append(recipe.title);
+        $("#recipe_description").append(recipe.description);
+        $("#recipe_prep_time").append(recipe.prep_time);
+        $("#recipe_cook_time").append(recipe.cook_time);
+        $("#recipe_directions").append(recipe.directions);
+          // debugger;
+        // console.log(recipe(response));
+        let totalAmount = recipe.ingredientTotal(response);
+        // debugger;
+        $("#total_amount").append(totalAmount);
+
+        for(var i = 0; i < response.ingredients.length; i++) {
+          // create html in es6 template for ingredients
+          // Recipe(response);
+          let ingredients =
+            `<h1 class="ui centered header">
+              ${recipe.quantity[0][i].quantity} ${recipe.name[0][i].name}
+            </h1>`;
+            // debugger;
+          $("#recipe_ingredients").append(ingredients);
+          // debugger;
+        }
+        if(response.gluten_free === true ) {
+          $("#checkmark").addClass("checkmark icon");
+        } else {
+          $("#checkmark").addClass("remove icon");
+        }
+        if(response.vegan === true)  {
+          $("#remove").addClass("checkmark icon");
+        } else {
+          $("#remove").addClass("remove icon");
+        }
+      });
+    });
+  }
+  recipeIngredientsResponse();
+
 });
+
+function Recipe(attributes) {
+  // Recipe details of object
+  this.title = attributes.title;
+  this.description = attributes.description;
+  this.prep_time = attributes.prep_time;
+  this.cook_time = attributes.cook_time;
+  this.directions = attributes.directions;
+  // Ingredients details of object
+  this.quantity = [attributes.recipe_ingredients];
+  this.name = [attributes.ingredients];
+}
+
+Recipe.prototype.ingredientTotal = function(attributes) {
+  return attributes.ingredients.length;
+};

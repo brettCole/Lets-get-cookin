@@ -50,6 +50,8 @@ gem 'figaro'
 
 gem 'pry'
 
+gem 'rubocop'
+
 # Strip unwanted white space
 gem "auto_strip_attributes"
 
