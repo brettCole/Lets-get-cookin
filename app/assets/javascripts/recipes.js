@@ -1,6 +1,4 @@
-// $(function() {
-//   "use strict";
-//
+
 //   variables for recipe reviews on recipe show page
 //   let $rating = $("#rating");
 //   let $review = $("#review");
@@ -61,45 +59,7 @@
 //       });
 //     });
 //   }
-//
-//   // function for favorites index
-//   // $(window).on("load", function() {
-//   //   $.getJSON({
-//   //     url: window.location.href + ".json"
-//   //   }).success(function(response) {
-//   //     // let $title = $( ".js-title" );
-//   //     let reviewCount = 0;
-//   //
-//   //     while (reviewCount < $title.length) {
-//   //       let recipe_title = response[reviewCount].recipe.title;
-//   //       let recipe_id = response[reviewCount].recipe.id;
-//   //
-//   //       $title.eq(reviewCount).prepend($("<a>")
-//   //         .text(`${ response[reviewCount].recipe.title }`)
-//   //         .attr("href", `/recipes/${recipe_id}`));
-//   //       reviewCount++;
-//   //     }
-//   //   });
-//   // });
-//
-//   // function for favorites index
-//   function favoritesIndex() {
-//     $.getJSON({
-//       url: window.location.href + ".json"
-//     }).success(function(response) {
-//       let $title = $(".js-title");
-//       for (var i = 0; i < $title.length, i++;) {
-//         let recipe_title = response[i].recipe.title;
-//         let recipe_id = response[i].recipe.id;
-//
-//         $title.eq(i).prepend($("<a>")
-//           .text(`${ response[i].recipe.title }`)
-//           .attr("href", `/recipes/${recipe_id}`));
-//     }
-//   });
-// }
-// $(favoritesIndex);
-//
+
 //   // function to reveal rating form
 //   $("div:contains('Write Review')").on("click", function(e) {
 //     e.preventDefault();
@@ -242,40 +202,13 @@
 // //   });
 // // }
 // // recipeIngredientsResponse();
-//
-// // function favoritesIndex() {
-// //   $(window).on("load", function() {
-// //     $.getJSON({
-// //       url: window.location.href + ".json"
-// //     }).success(function(response) {
-// //       let $title = $( ".js-title" );
-// //       // let reviewCount = 0;
-// //
-// //       for (var i = 0; i < $title.length; i++) {
-// //         let recipe_title = response[i].recipe.title;
-// //         let recipe_id = response[i].recipe.id;
-// //
-// //         $title.eq(i).prepend($("<a>")
-// //           .text(`${ response[i].recipe.title }`)
-// //           .attr("href", `/recipes/${recipe_id}`));
-// //         // reviewCount++;
-// //       }
-// //     });
-// //   });
-// // }
-// // favoritesIndex();
 
-// $(function() {
-//   "use strict";
-//
-//   favoritesIndex();
-// });
 
 function favoritesIndex() {
   let url = window.location.href;
   fetch(`${url}.json`, {
     method: 'GET',
-    credentials: 'include',
+    credentials: 'same-origin',
     headers: {
       'Accept': 'application/json',
     },
@@ -290,19 +223,26 @@ function favoritesIndex() {
         let recipe_id = data[i].recipe.id;
 
         $title.eq(i).prepend($("<a>")
-          .text(`${ data[i].recipe.title }`)
+          .text(`${data[i].recipe.title}`)
           .attr("href", `/recipes/${recipe_id}`));
         i++;
       }
     })
     .catch(function(error) {
-      // console.log(error);
-      console.log('received error on this request: ', error);
+      alert("Sorry for the inconvenience, but we are having trouble displaying your favorites. While we work this out, go create a recipe!");
     });
+}
+
+
+
+function checkIfPageOne() {
+  if(window.location.href.indexOf("favorites") > -1) {
+    favoritesIndex();
+  }
 }
 
 $(function() {
   "use strict";
 
-  favoritesIndex();
+  checkIfPageOne();
 });
