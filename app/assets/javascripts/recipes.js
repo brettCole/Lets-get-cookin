@@ -228,12 +228,84 @@ function favoritesIndex() {
         i++;
       }
     })
-    .catch(function(error) {
+    .catch(function() {
       alert("Sorry for the inconvenience, but we are having trouble displaying your favorites. While we work this out, go create a recipe!");
     });
 }
 
+// function for recipe show page - Show Reviews Link
+function showReview() {
+  $("#js-show_review").on("click", function(e) {
+    e.preventDefault();
 
+    let url = this.href;
+
+    fetch(`${url}.json`, {
+        method: 'GET',
+        credentials: 'same-origin',
+        headers: {
+          'Accept': 'application/json',
+        },
+      })
+      .then((response) => response.json())
+      .then(data => {
+        let $rating = $("#rating");
+        let $review = $("#review");
+        let $user = $("#user");
+        let reviewCount = 0;
+        $user.empty().prepend(data[reviewCount].user.name);
+        $rating.empty().append(data[reviewCount].rating);
+        $review.empty().append(data[reviewCount].review);
+
+        nextReview();
+
+        $(".show_hide").removeClass("show_hide");
+      })
+      .catch(function() {
+        alert("Can not show recipe reviews at this time!")
+      });
+  });
+}
+
+// next / previous ratings function for recipe show page
+function nextReview() {
+  let url = $("#js-show_review").attr("href");
+  let reviewCount = 0;
+  let $rating = $("#rating");
+  let $review = $("#review");
+  let $user = $("#user");
+
+  fetch(`${url}.json`, {
+      method: 'GET',
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then(data => {
+      $("#next_rating").on("click", function(e) {
+        e.preventDefault();
+        reviewCount++;
+        if (data[reviewCount].rating !== "") {
+          // $user.text( "" );
+          $user.empty().prepend(data[reviewCount].user.name);
+          $rating.empty().append(data[reviewCount].rating);
+          $review.empty().append(data[reviewCount].review);
+        }
+      });
+
+      $("#previous_rating").on("click", function(e) {
+        e.preventDefault();
+        reviewCount--;
+        if (data[reviewCount].rating !== "") {
+          $user.empty().prepend(data[reviewCount].user.name);
+          $rating.empty().append(data[reviewCount].rating);
+          $review.empty().append(data[reviewCount].review);
+        }
+      });
+    });
+  }
 
 function checkIfPageOne() {
   if(window.location.href.indexOf("favorites") > -1) {
@@ -241,8 +313,15 @@ function checkIfPageOne() {
   }
 }
 
+function checkIfPageTwo() {
+  if(window.location.href.indexOf("recipes") > -1) {
+    showReview();
+  }
+}
+
 $(function() {
   "use strict";
 
   checkIfPageOne();
+  checkIfPageTwo();
 });
