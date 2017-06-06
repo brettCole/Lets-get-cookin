@@ -17,11 +17,11 @@ Once server is running, inside your browser navigate to `localhost:3000` and enj
 
 ## Important Gems for App -
 
-`bcrypt` - store password with hashing algorithm  
-`omniauth`,  
-`omniauth-twitter`,  
-`omniauth-facebook` - used to handle sign-in with third party web applications.  
-`figaro` - used to store key/secret codes from git  
+`bcrypt` - store password with hashing algorithm
+`omniauth`,
+`omniauth-twitter`,
+`omniauth-facebook` - used to handle sign-in with third party web applications.
+`figaro` - used to store key/secret codes from git
 
 ## Contributing -
 Bug reports and pull requests are welcome on Github at https://github.com/brettCole/Lets-get-cookin. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org/) code of conduct.
