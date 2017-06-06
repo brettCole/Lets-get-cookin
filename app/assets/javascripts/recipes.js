@@ -273,14 +273,15 @@
 
 function favoritesIndex() {
   let url = window.location.href;
-  fetch(url + ".json", {
+  fetch(`${url}.json`, {
     method: 'GET',
+    credentials: 'include',
     headers: {
-      'Accept': 'application/json'
-    }
+      'Accept': 'application/json',
+    },
   })
     .then((response) => response.json())
-    .then(function(data) {
+    .then(data => {
       let $title = $(".js-title");
       let i = 0;
 
@@ -296,7 +297,7 @@ function favoritesIndex() {
     })
     .catch(function(error) {
       // console.log(error);
-      console.log(error);
+      console.log('received error on this request: ', error);
     });
 }
 
