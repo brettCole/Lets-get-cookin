@@ -1,103 +1,4 @@
 
-//   variables for recipe reviews on recipe show page
-//   let $rating = $("#rating");
-//   let $review = $("#review");
-//   let $user = $("#user");
-//   let reviewCount = 0;
-//
-//   variables for user favorite recipe index
-//   let $title = $(".js-title");
-//
-//   let showGetReviewUrl = $("#js-show_review").attr("href") + ".json";
-//
-//   // function for recipe show page
-//   function showReview() {
-//     $("#js-show_review").on("click", function(e) {
-//       e.preventDefault();
-//
-//       $.get({
-//         url: this.href + ".json"
-//       }).success(function(response) {
-//         let $rating = $( "#rating" );
-//         let $review = $( "#review" );
-//         let $user = $( "#user" );
-//         let reviewCount = 0;
-//         $user.empty().prepend(response[reviewCount].user.name);
-//         $rating.empty().append(response[reviewCount].rating);
-//         $review.empty().append(response[reviewCount].review);
-//
-//         nextReview();
-//       });
-//       $(".show_hide").removeClass("show_hide");
-//     });
-//   }
-//   showReview();
-//
-//   function nextReview() {
-//     $.get({
-//       url: showGetReviewUrl
-//     }).success(function(response) {
-//       $("#next_rating").on("click", function(e) {
-//         e.preventDefault();
-//         reviewCount++;
-//         if (response[reviewCount].rating !== "") {
-//           // $user.text( "" );
-//           $user.empty().prepend(response[reviewCount].user.name);
-//           $rating.empty().append(response[reviewCount].rating);
-//           $review.empty().append(response[reviewCount].review);
-//         }
-//       });
-//
-//       $("#previous_rating").on("click", function(e) {
-//         e.preventDefault();
-//         reviewCount--;
-//         if (response[reviewCount].rating !== "") {
-//           $user.empty().prepend(response[reviewCount].user.name);
-//           $rating.empty().append(response[reviewCount].rating);
-//           $review.empty().append(response[reviewCount].review);
-//         }
-//       });
-//     });
-//   }
-
-//   // function to reveal rating form
-//   $("div:contains('Write Review')").on("click", function(e) {
-//     e.preventDefault();
-//     $("#hidden_recipe_field").show();
-//     $("html, body").scrollTop($(document).height());
-//   });
-//
-//   // // function to post via ajax post
-//   $("#new_rating").on("submit", function(e) {
-//     e.preventDefault();
-//     let rating_url = this.action;
-//     let form_data = $(this).serialize();
-//     console.log(form_data);
-//
-//     $.post({
-//       url: rating_url,
-//       data: form_data
-//     }).success(function(response) {
-//       let recipe_user = response.user.name;
-//       let recipe_rating = response.rating;
-//       let recipe_review = response.review;
-//       let $rating = $("#rating");
-//       let $review = $("#review");
-//       let $user = $("#user");
-//
-//       $user.text("");
-//       $rating.text("");
-//       $review.text("");
-//       $user.prepend(recipe_user);
-//       $rating.prepend(recipe_rating);
-//       $review.prepend(recipe_review);
-//
-//       $(".show_hide").removeClass("show_hide");
-//
-//       nextReview();
-//     });
-//   });
-//
 //   function recipeIngredientsResponse() {
 //     $(window).on("load", function() {
 //       debugger;
@@ -288,7 +189,6 @@ function nextReview() {
         e.preventDefault();
         reviewCount++;
         if (data[reviewCount].rating !== "") {
-          // $user.text( "" );
           $user.empty().prepend(data[reviewCount].user.name);
           $rating.empty().append(data[reviewCount].rating);
           $review.empty().append(data[reviewCount].review);
@@ -305,7 +205,44 @@ function nextReview() {
         }
       });
     });
-  }
+}
+
+// function to reveal rating form - Recipe Show Page
+function revealForm() {
+  $("div:contains('Write Review')").on("click", function(e) {
+    e.preventDefault();
+    $("#hidden_recipe_field").show();
+    $("html, body").scrollTop($(document).height());
+  });
+  postFromForm();
+}
+
+// function to post via ajax post
+function postFromForm() {
+  $("#new_rating").on("submit", function(e) {
+    e.preventDefault();
+    let rating_url = this.action;
+    let form_data = $(this).serialize();
+
+    $.post({
+      url: rating_url,
+      data: form_data
+    }).success(function(response) {
+
+      $("#user").text("");
+      $("#rating").text("");
+      $("#review").text("");
+      $("#user").prepend(response.user.name);
+      $("#rating").prepend(response.rating);
+      $("#review").prepend(response.review);
+
+      $(".show_hide").removeClass("show_hide");
+      $("#hidden_recipe_field").hide();
+
+      nextReview();
+    });
+  });
+}
 
 function checkIfPageOne() {
   if(window.location.href.indexOf("favorites") > -1) {
@@ -316,6 +253,7 @@ function checkIfPageOne() {
 function checkIfPageTwo() {
   if(window.location.href.indexOf("recipes") > -1) {
     showReview();
+    revealForm();
   }
 }
 
