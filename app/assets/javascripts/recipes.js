@@ -119,12 +119,9 @@ function postFromForm() {
       data: form_data
     }).success(function(response) {
 
-      $("#user").text("");
-      $("#rating").text("");
-      $("#review").text("");
-      $("#user").prepend(response.user.name);
-      $("#rating").prepend(response.rating);
-      $("#review").prepend(response.review);
+      $("#user").empty().prepend(response.user.name);
+      $("#rating").empty().prepend(response.rating);
+      $("#review").empty().prepend(response.review);
 
       $(".show_hide").removeClass("show_hide");
       $("#hidden_recipe_field").hide();
