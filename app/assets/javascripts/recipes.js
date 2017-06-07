@@ -1,12 +1,12 @@
 function favoritesIndex() {
   let url = window.location.href;
   fetch(`${url}.json`, {
-    method: 'GET',
-    credentials: 'same-origin',
-    headers: {
-      'Accept': 'application/json',
-    },
-  })
+      method: 'GET',
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+      },
+    })
     .then((response) => response.json())
     .then(data => {
       let $title = $(".js-title");
@@ -54,9 +54,6 @@ function showReview() {
         nextReview();
 
         $(".show_hide").removeClass("show_hide");
-      })
-      .catch(function() {
-        alert("Can not show recipe reviews at this time!")
       });
   });
 }
@@ -141,40 +138,40 @@ function recipeIngredientsResponse() {
   let url = window.location.href;
 
   fetch(`${url}.json`, {
-    method: 'GET',
-    credentials: 'same-origin',
-    headers: {
-      'Accept': 'application/json',
-    },
-  })
-  .then((response) => response.json())
-  .then(data => {
-    let recipe = new Recipe(data);
-    let totalAmount = recipe.ingredientTotal(data);
+      method: 'GET',
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then(data => {
+      let recipe = new Recipe(data);
+      let totalAmount = recipe.ingredientTotal(data);
 
-    $("#recipe_title").append(recipe.title);
-    $("#recipe_description").append(recipe.description);
-    $("#recipe_prep_time").append(recipe.prep_time);
-    $("#recipe_cook_time").append(recipe.cook_time);
-    $("#recipe_directions").append(recipe.directions);
+      $("#recipe_title").append(recipe.title);
+      $("#recipe_description").append(recipe.description);
+      $("#recipe_prep_time").append(recipe.prep_time);
+      $("#recipe_cook_time").append(recipe.cook_time);
+      $("#recipe_directions").append(recipe.directions);
 
-    $("#total_amount").append(totalAmount);
+      $("#total_amount").append(totalAmount);
 
-    for(var i = 0; i < data.ingredients.length; i++) {
-      // create html in es6 template for ingredients
-      let ingredients =
-        `<h1 class="ui centered header">
+      for (var i = 0; i < data.ingredients.length; i++) {
+        // create html in es6 template for ingredients
+        let ingredients =
+          `<h1 class="ui centered header">
           ${recipe.quantity[0][i].quantity} ${recipe.name[0][i].name}
           </h1>`;
-      $("#recipe_ingredients").append(ingredients);
-    }
-    if (data.gluten_free === true) {
-      $("#checkmark").removeClass("remove").addClass("checkmark");
-    }
-    if (data.vegan === true) {
-      $("#remove").removeClass("remove").addClass("checkmark");
-    }
-  });
+        $("#recipe_ingredients").append(ingredients);
+      }
+      if (data.gluten_free === true) {
+        $("#checkmark").removeClass("remove").addClass("checkmark");
+      }
+      if (data.vegan === true) {
+        $("#remove").removeClass("remove").addClass("checkmark");
+      }
+    });
 }
 
 // Recipe object
@@ -195,13 +192,13 @@ Recipe.prototype.ingredientTotal = (attributes) => {
 };
 
 function checkIfPageOne() {
-  if(window.location.href.indexOf("favorites") > -1) {
+  if (window.location.href.indexOf("favorites") > -1) {
     favoritesIndex();
   }
 }
 
 function checkIfPageTwo() {
-  if(window.location.href.indexOf("recipes") > -1) {
+  if (window.location.href.indexOf("recipes") > -1) {
     recipeIngredientsResponse();
     showReview();
     revealForm();
