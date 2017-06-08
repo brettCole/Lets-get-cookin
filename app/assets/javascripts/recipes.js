@@ -43,13 +43,11 @@ function showReview() {
       })
       .then((response) => response.json())
       .then(data => {
-        let $rating = $("#rating");
-        let $review = $("#review");
-        let $user = $("#user");
         let reviewCount = 0;
-        $user.empty().prepend(data[reviewCount].user.name);
-        $rating.empty().append(data[reviewCount].rating);
-        $review.empty().append(data[reviewCount].review);
+        
+        $("#user").empty().prepend(data[reviewCount].user.name);
+        $("#rating").empty().append(data[reviewCount].rating);
+        $("#review").empty().append(data[reviewCount].review);
 
         nextReview();
 
