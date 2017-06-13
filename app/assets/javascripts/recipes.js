@@ -9,7 +9,7 @@ function favoritesIndex() {
     })
     .then((response) => response.json())
     .then(data => {
-      let $title = $(".js-title");
+      const $title = $(".js-title");
       let i = 0;
 
       while (i < $title.length) {
@@ -32,7 +32,7 @@ function showReview() {
   $("#js-show_review").on("click", function(e) {
     e.preventDefault();
 
-    let url = this.href;
+    const url = this.href;
 
     fetch(`${url}.json`, {
         method: 'GET',
@@ -44,7 +44,7 @@ function showReview() {
       .then((response) => response.json())
       .then(data => {
         let reviewCount = 0;
-        
+
         $("#user").empty().prepend(data[reviewCount].user.name);
         $("#rating").empty().append(data[reviewCount].rating);
         $("#review").empty().append(data[reviewCount].review);
@@ -58,11 +58,11 @@ function showReview() {
 
 // next / previous ratings function for recipe show page
 function nextReview() {
-  let url = $("#js-show_review").attr("href");
+  const url = $("#js-show_review").attr("href");
   let reviewCount = 0;
-  let $rating = $("#rating");
-  let $review = $("#review");
-  let $user = $("#user");
+  const $rating = $("#rating");
+  const $review = $("#review");
+  const $user = $("#user");
 
   fetch(`${url}.json`, {
       method: 'GET',
@@ -109,12 +109,10 @@ function revealForm() {
 function postFromForm() {
   $("#new_rating").on("submit", function(e) {
     e.preventDefault();
-    let rating_url = this.action;
-    let form_data = $(this).serialize();
 
     $.post({
-      url: rating_url,
-      data: form_data
+      url: this.action,
+      data: $(this).serialize()
     }).success(function(response) {
 
       $("#user").empty().prepend(response.user.name);
@@ -130,7 +128,7 @@ function postFromForm() {
 }
 
 function recipeIngredientsResponse() {
-  let url = window.location.href;
+  const url = window.location.href;
 
   fetch(`${url}.json`, {
       method: 'GET',
@@ -141,8 +139,8 @@ function recipeIngredientsResponse() {
     })
     .then((response) => response.json())
     .then(data => {
-      let recipe = new Recipe(data);
-      let totalAmount = recipe.ingredientTotal(data);
+      const recipe = new Recipe(data);
+      const totalAmount = recipe.ingredientTotal(data);
 
       $("#recipe_title").append(recipe.title);
       $("#recipe_description").append(recipe.description);
