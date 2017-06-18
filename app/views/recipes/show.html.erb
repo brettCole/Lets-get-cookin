@@ -1,4 +1,4 @@
-<div class="ui raised text container segment">
+<div id="show_recipe_details" class="ui raised text container segment">
 
   <% if logged_in? && current_user != @recipe.user %>
     <%= form_for @favorite do |f| %>

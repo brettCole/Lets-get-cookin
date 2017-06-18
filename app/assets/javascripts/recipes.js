@@ -1,37 +1,7 @@
-function favoritesIndex() {
-  let url = window.location.href;
-  fetch(`${ url }.json`, {
-      method: 'GET',
-      credentials: 'same-origin',
-      headers: {
-        'Accept': 'application/json',
-      },
-    })
-    .then(response => response.json())
-    .then(data => {
-      const $title = $(".js-title");
-      let i = 0;
-
-      while (i < $title.length) {
-        let recipe_title = data[i].recipe.title;
-        let recipe_id = data[i].recipe.id;
-
-        $title.eq(i).prepend($("<a>")
-          .text(`${ data[i].recipe.title }`)
-          .attr("href", `/recipes/${ recipe_id }`));
-        i++;
-      }
-    })
-    .catch(function() {
-      alert("Sorry for the inconvenience, but we are having trouble displaying your favorites. While we work this out, go create a recipe!");
-    });
-}
-
 // function for recipe show page - Show Reviews Link
 function showReview() {
   $("#js-show_review").on("click", function(e) {
     e.preventDefault();
-
     const url = this.href;
 
     fetch(`${ url }.json`, {
@@ -128,43 +98,46 @@ function postFromForm() {
 }
 
 function recipeIngredientsResponse() {
-  const url = window.location.href;
+  const recipeDetails = $("#show_recipe_details");
+  if (recipeDetails) {
+    const url = window.location.href;
 
-  fetch(`${ url }.json`, {
-      method: 'GET',
-      credentials: 'same-origin',
-      headers: {
-        'Accept': 'application/json',
-      },
-    })
-    .then((response) => response.json())
-    .then(data => {
-      const recipe = new Recipe(data);
-      const totalAmount = recipe.ingredientTotal(data);
+    fetch(`${ url }.json`, {
+        method: 'GET',
+        credentials: 'same-origin',
+        headers: {
+          'Accept': 'application/json',
+        },
+      })
+      .then((response) => response.json())
+      .then(data => {
+        const recipe = new Recipe(data);
+        const totalAmount = recipe.ingredientTotal(data);
 
-      $("#recipe_title").append(recipe.title);
-      $("#recipe_description").append(recipe.description);
-      $("#recipe_prep_time").append(recipe.prep_time);
-      $("#recipe_cook_time").append(recipe.cook_time);
-      $("#recipe_directions").append(recipe.directions);
+        $("#recipe_title").append(recipe.title);
+        $("#recipe_description").append(recipe.description);
+        $("#recipe_prep_time").append(recipe.prep_time);
+        $("#recipe_cook_time").append(recipe.cook_time);
+        $("#recipe_directions").append(recipe.directions);
 
-      $("#total_amount").append(totalAmount);
+        $("#total_amount").append(totalAmount);
 
-      for (var i = 0; i < data.ingredients.length; i++) {
-        // create html in es6 template for ingredients
-        let ingredients =
-          `<h1 class="ui centered header">
-          ${ recipe.quantity[0][i].quantity } ${ recipe.name[0][i].name }
-          </h1>`;
-        $("#recipe_ingredients").append(ingredients);
-      }
-      if (data.gluten_free === true) {
-        $("#checkmark").removeClass("remove").addClass("checkmark");
-      }
-      if (data.vegan === true) {
-        $("#remove").removeClass("remove").addClass("checkmark");
-      }
+        for (var i = 0; i < data.ingredients.length; i++) {
+          // create html in es6 template for ingredients
+          let ingredients =
+            `<h1 class="ui centered header">
+            ${ recipe.quantity[0][i].quantity } ${ recipe.name[0][i].name }
+            </h1>`;
+          $("#recipe_ingredients").append(ingredients);
+        }
+        if (data.gluten_free === true) {
+          $("#checkmark").removeClass("remove").addClass("checkmark");
+        }
+        if (data.vegan === true) {
+          $("#remove").removeClass("remove").addClass("checkmark");
+        }
     });
+  }
 }
 
 function addIngredient() {
@@ -203,24 +176,11 @@ Recipe.prototype.ingredientTotal = (attributes) => {
   return attributes.ingredients.length;
 };
 
-function checkIfPageOne() {
-  if (window.location.href.indexOf("favorites") > -1) {
-    favoritesIndex();
-  }
-}
-
-function checkIfPageTwo() {
-  if (window.location.href.indexOf("recipes") > -1) {
-    recipeIngredientsResponse();
-    showReview();
-    revealForm();
-    addIngredient();
-  }
-}
-
 $(function() {
   "use strict";
 
-  checkIfPageOne();
-  checkIfPageTwo();
+  recipeIngredientsResponse();
+  showReview();
+  revealForm();
+  addIngredient();
 });
