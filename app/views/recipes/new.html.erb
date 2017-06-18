@@ -1,10 +1,10 @@
 <%= form_for @recipe, :html => { :class => "ui form" } do |f| %>
-  <div class="ui raised text container segment">
+  <div id="parent_add_ingredient" class="ui raised text container segment">
     <%= render 'users/form_errors', object: @recipe %>
 
     <%= render 'recipe_form', f: f %>
 
-    <% 10.times do |n| %>
+    <% 1.times do |n| %>
       <%= f.fields_for :ingredients do |i| %>
         <div class="fluid field">
           <%= i.label :quantity %>
@@ -15,8 +15,10 @@
       <% end %>
     <% end %>
 
-    <!-- <button id="add_ingredient" type="button" class="ui teal huge button">Add Ingredient</button><br><br> -->
+  </div>
+  <div class="ui text container">
+    <button id="add_ingredient" data-url="/ingredients/new" type="button" class="ui teal huge button">Add Ingredient</button><br><br>
 
-      <%= f.submit 'Create Recipe', :class => "ui teal huge submit button fluid" %>
+      <%= f.submit 'Create Recipe', :class => "ui teal huge submit button fluid text container" %>
   </div>
 <% end %>

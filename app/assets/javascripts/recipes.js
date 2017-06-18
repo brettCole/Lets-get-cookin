@@ -7,7 +7,7 @@ function favoritesIndex() {
         'Accept': 'application/json',
       },
     })
-    .then((response) => response.json())
+    .then(response => response.json())
     .then(data => {
       const $title = $(".js-title");
       let i = 0;
@@ -167,6 +167,40 @@ function recipeIngredientsResponse() {
     });
 }
 
+function addIngredient() {
+  let index = 1;
+
+  $("#add_ingredient").on("click", function(e) {
+    e.preventDefault();
+
+    const formField =
+      `<div class="fluid field">
+        <label for='recipe_ingredients_attributes_${ index + 1 }_quantity'>Quantity</label>
+        <input type='text' name='recipe[ingredients_attributes][${ index + 1 }][quantity]'><br>
+        <label for='recipe_ingredients_attributes_${ index + 1 }_Ingredient'>Ingredient ${ index + 1 }</label>
+        <input type='text' name='recipe[ingredients_attributes][${ index + 1 }][name]' id='recipe_ingredients_attributes__${ index + 1 }_name'>
+      </div><br>`;
+      index++;
+
+    $('#parent_add_ingredient').append(formField);
+    // const url = $(this).data("url");
+    // e.preventDefault();
+
+    // fetch(url, {
+    //   method: 'GET',
+    //   credentials: 'same-origin',
+    //   headers: {
+    //     'Content-Type': 'text/html'
+    //   },
+    // })
+    // .then(response => response.text())
+    // .then(data => {
+    //   $('#parent_add_ingredient').append(data);
+    //   console.log(data);
+    // });
+  });
+}
+
 // Recipe object
 function Recipe(attributes) {
   // Recipe details of object
@@ -195,6 +229,7 @@ function checkIfPageTwo() {
     recipeIngredientsResponse();
     showReview();
     revealForm();
+    addIngredient();
   }
 }
 
