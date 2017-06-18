@@ -1,6 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :require_login, only: [ :new, :create ]
-
+  before_action :require_login, only: %i[new create]
   def index
     if params[:search]
       @recipes = Recipe.where('title LIKE ?', '%#{params[:search]}%')
@@ -48,8 +47,8 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :description, :directions, :prep_time, :cook_time, :gluten_free, :vegan,
-    :ingredients_attributes => [:id, :quantity, :name])
+    params.require(:recipe).permit(:title, :description, :directions,
+                                   :prep_time, :cook_time, :gluten_free, :vegan,
+                                   ingredients_attributes: %i[id quantity name])
   end
-
 end

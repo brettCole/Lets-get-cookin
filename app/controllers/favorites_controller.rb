@@ -1,5 +1,4 @@
 class FavoritesController < ApplicationController
-
   def index
     @favorites = current_user.favorites.all
     respond_to do |format|
@@ -29,5 +28,4 @@ class FavoritesController < ApplicationController
   def favorite_params
     params.require(:favorite).permit(:recipe_id, :user_id)
   end
-
 end

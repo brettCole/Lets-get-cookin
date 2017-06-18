@@ -4,5 +4,4 @@ class RecipeIngredient < ApplicationRecord
 
   # Strip neccassary white space
   auto_strip_attributes :quantity
-
 end

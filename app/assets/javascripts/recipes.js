@@ -1,6 +1,6 @@
 function favoritesIndex() {
   let url = window.location.href;
-  fetch(`${url}.json`, {
+  fetch(`${ url }.json`, {
       method: 'GET',
       credentials: 'same-origin',
       headers: {
@@ -17,8 +17,8 @@ function favoritesIndex() {
         let recipe_id = data[i].recipe.id;
 
         $title.eq(i).prepend($("<a>")
-          .text(`${data[i].recipe.title}`)
-          .attr("href", `/recipes/${recipe_id}`));
+          .text(`${ data[i].recipe.title }`)
+          .attr("href", `/recipes/${ recipe_id }`));
         i++;
       }
     })
@@ -34,7 +34,7 @@ function showReview() {
 
     const url = this.href;
 
-    fetch(`${url}.json`, {
+    fetch(`${ url }.json`, {
         method: 'GET',
         credentials: 'same-origin',
         headers: {
@@ -130,7 +130,7 @@ function postFromForm() {
 function recipeIngredientsResponse() {
   const url = window.location.href;
 
-  fetch(`${url}.json`, {
+  fetch(`${ url }.json`, {
       method: 'GET',
       credentials: 'same-origin',
       headers: {
@@ -154,7 +154,7 @@ function recipeIngredientsResponse() {
         // create html in es6 template for ingredients
         let ingredients =
           `<h1 class="ui centered header">
-          ${recipe.quantity[0][i].quantity} ${recipe.name[0][i].name}
+          ${ recipe.quantity[0][i].quantity } ${ recipe.name[0][i].name }
           </h1>`;
         $("#recipe_ingredients").append(ingredients);
       }
@@ -183,21 +183,6 @@ function addIngredient() {
       index++;
 
     $('#parent_add_ingredient').append(formField);
-    // const url = $(this).data("url");
-    // e.preventDefault();
-
-    // fetch(url, {
-    //   method: 'GET',
-    //   credentials: 'same-origin',
-    //   headers: {
-    //     'Content-Type': 'text/html'
-    //   },
-    // })
-    // .then(response => response.text())
-    // .then(data => {
-    //   $('#parent_add_ingredient').append(data);
-    //   console.log(data);
-    // });
   });
 }
 

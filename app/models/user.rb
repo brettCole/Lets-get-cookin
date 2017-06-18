@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :name, :email, presence: true
   validates :email, uniqueness: true
 
-  #Create User with auth value from Twitter or Facebook
+  # Create User with auth value from Twitter or Facebook
   def self.sign_in_with_auth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
       user.provider = auth.provider
@@ -19,5 +19,4 @@ class User < ApplicationRecord
       user.save!
     end
   end
-
 end

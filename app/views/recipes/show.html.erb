@@ -10,52 +10,34 @@
 
   <%= if_logged_in_options %>
 
-  <h1 id="recipe_title" class="ui centered header"><%#= @recipe.title %></h1>
-  <h1 id="recipe_description" class="ui centered header">Description: <%#= @recipe.description %></h1>
-  <h1 id="recipe_prep_time" class="ui centered header">Prep Time: <%#= @recipe.prep_time %></h1>
-  <h1 id="recipe_cook_time" class="ui centered header">Cook Time: <%#= @recipe.cook_time %></h1>
-  <h1 id="recipe_directions" class="ui centered header">Directions: <%#= @recipe.directions %></h1>
+  <h1 id="recipe_title" class="ui centered header"></h1>
+  <h1 id="recipe_description" class="ui centered header">Description: </h1>
+  <h1 id="recipe_prep_time" class="ui centered header">Prep Time: </h1>
+  <h1 id="recipe_cook_time" class="ui centered header">Cook Time: </h1>
+  <h1 id="recipe_directions" class="ui centered header">Directions: </h1>
 
   <div id="recipe_ingredients" class="ui list">
     <h1 id="total_amount" class="ui centered header">Total Number of Ingredients: </h1>
     <h1 class="ui centered header">Ingredients: </h1>
-    <%# @recipe.recipe_ingredients.each do |recipe| %>
-      <!-- <h1 class="ui centered header"><%#= recipe.quantity %> <%#= recipe.ingredient.name %></h1> -->
-    <%# end %>
   </div>
 
-  <!-- <% if @recipe.vegan == true %>
-    <h1 class="ui centered header">Vegan: <i class="ui centered checkmark icon"></i></h1>
-  <% else %>
-    <h1 class="ui centered header">Vegan: <i class="ui centered remove icon"></i></h1>
-  <% end %>
-  <% if @recipe.gluten_free == true %>
-    <h1 class="ui centered header">Gluten Free: <i class="ui centered checkmark icon"></i></h1>
-  <% else %>
-    <h1 class="ui centered header">Gluten Free: <i class="ui centered remove icon"></i></h1>
-  <% end %> -->
   <h1 class="ui centered header">Vegan: <i id="checkmark" class="ui centered remove icon"></i></h1>
   <h1 class="ui centered header">Gluten Free: <i id="remove" class="ui centered remove icon"></i></h1>
 </div>
 
 <div class="ui raised text container segment">
   <h1 class="ui centered header"><%= link_to "Show Reviews", recipe_ratings_path(@recipe.id), id: "js-show_review" %></h1>
-  <%# @ratings.each do |rating| %>
   <div class="ui very padded segment show_hide">
     <h1 class="ui centered header"><span id="user"></span>'s Review</h1>
     <h1 class="ui centered header">Rating: <span id="rating"></span></h1>
     <h1 class="ui centered header">Review: </h1>
     <h1 id="review" class="ui centered header"></h1>
-    <!-- <h1 class="ui centered header show_hide">Rating: <%# @ratings.rating %></h1>
-    <h1 class="ui centered header show_hide">Review: <%# @ratings.review %></h1> -->
     <a href="#"><i id="previous_rating" class="arrow left icon large"></i></a>
     <a href="#"><i id="next_rating" class="arrow right icon large"></i></a>
   </div>
-  <%# end %>
 </div>
 
 <div id="hidden_recipe_field" class="ui raised text container segment">
-  <!-- <%#= render 'ratings/form', f: @rating %> -->
   <%= form_for @rating, :html => { :class => "ui form" } do |f| %>
 
     <%= render 'users/form_errors', object: @rating %>

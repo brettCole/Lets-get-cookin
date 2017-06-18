@@ -1,5 +1,4 @@
 class RatingsController < ApplicationController
-
   def index
     @recipe = Recipe.find(params[:recipe_id])
     @ratings = @recipe.ratings.all
@@ -26,7 +25,6 @@ class RatingsController < ApplicationController
     end
   end
 
-  # show for ajax
   def show
     @recipe = Recipe.find_by(params[:recipe_id])
     @rating = @recipe.rating
@@ -37,5 +35,4 @@ class RatingsController < ApplicationController
   def rating_params
     params.require(:rating).permit(:rating, :recipe_id, :review, :user_id)
   end
-
 end
