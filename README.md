@@ -1,10 +1,10 @@
 # Lets Get Cookin
 
-Lets Get Cookin is a simple recipe manager app. This app includes recipe creation and editing. But also the ability to rate and review a recipe and also add a recipe to a user's favorites list.
+Lets Get Cookin is a simple recipe manager app. This app includes recipe creation with editing. Also gives the user the ability to rate and review a recipe. The user has the ability to add a recipe to their favorites list if they like it.
 
-## Installation -
+## Installation Instructions -
 
-To use clone this repository to your computer and then run the following commands:
+To use clone this repository to your computer and then run the following commands in your terminal:
 
 ```ruby
 bundle install
@@ -17,11 +17,11 @@ Once server is running, inside your browser navigate to `localhost:3000` and enj
 
 ## Important Gems for App -
 
-`bcrypt` - store password with hashing algorithm
-`omniauth`,
-`omniauth-twitter`,
-`omniauth-facebook` - used to handle sign-in with third party web applications.
-`figaro` - used to store key/secret codes from git
+* `bcrypt` - store password with hashing algorithm
+* `omniauth` - used to handle sign-in with third party web applications`,
+  * `omniauth-twitter`,
+  * `omniauth-facebook`,
+* `figaro` - used to store key/secret codes from git, ENV values
 
 ## Contributing -
 Bug reports and pull requests are welcome on Github at https://github.com/brettCole/Lets-get-cookin. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org/) code of conduct.
